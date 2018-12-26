@@ -52,6 +52,6 @@ exec('/usr/bin/amixer -c udrc contents', (err, stdout, stderr) => {
 
 	}
 	amixer.push(element);
-	console.log(JSON.stringify(amixer));
+	console.log(JSON.stringify(amixer,null,4));
 });
 
