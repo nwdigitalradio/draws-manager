@@ -1,0 +1,15 @@
+<h1>{{title}}</h1>
+{{#each mixer}}
+	<div>
+	{{specs.name}} {{curvalues}}
+	{{#if params.itemlist}}
+		<div>
+		<select name="select-{{../specs.numid}}">
+		{{#each params.itemlist}}
+			<option value="{{value}}" {{#compare value "==="  ../curvalues}}selected{{/compare}}>{{label}}</option> 
+		{{/each}} 
+		</select>
+		</div>
+	{{/if}}
+	</div>
+{{/each}}
