@@ -1,7 +1,8 @@
-<h1>{{title}}</h1>
+<header id="pageHeader">{{title}}</header>
+<article id="mainArticle">
 {{#each mixer}}
 	<div>
-	{{specs.name}} {{curvalues}}
+	{{specs.name}} 
 	{{#if params.itemlist}}
 		<div>
 		<select name="select-{{../specs.numid}}">
@@ -13,3 +14,7 @@
 	{{/if}}
 	</div>
 {{/each}}
+</article>
+<nav id="mainNav">Navigation</nav>
+<div id="siteAds">TBD</div>
+<footer id="pageFooter"><a target="nwdr" href="https://nwdigitalradio.com">NW Digital Radio</a></footer>
