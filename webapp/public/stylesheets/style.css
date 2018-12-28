@@ -3,7 +3,7 @@ body {
   display: grid;
   grid-template-areas: 
     "header header ads"
-    "nav article article"
+    "nav main main"
     "nav footer footer";
   grid-template-rows: 80px 1fr 70px;  
   grid-template-columns: 20% 1fr 15%;
@@ -12,7 +12,20 @@ body {
   height: 100vh;
   margin: 0;
   }  
-header, footer, article, nav, div {
+
+.inner-grid {
+  float: left;
+  min-width: 49%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 5px;
+}
+.inner-grid > div {
+  background: salmon;
+  padding: 10px;
+}
+    
+header, footer, main, nav, div {
   padding: 1.2em;
   background: lightgrey;
   }
@@ -23,7 +36,7 @@ header, footer, article, nav, div {
   grid-area: footer;
   }
 #mainArticle { 
-  grid-area: article;      
+  grid-area: main;      
   }
 #mainNav { 
   grid-area: nav; 
@@ -36,7 +49,7 @@ header, footer, article, nav, div {
   body { 
     grid-template-areas: 
       "header"
-      "article"
+      "main"
       "ads"
       "nav"
       "footer";

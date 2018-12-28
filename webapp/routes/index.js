@@ -5,6 +5,9 @@ const fs = require('fs');
 const readline = require('readline');
 var amixer = [];
 
+//var controls = new Array(1,9,40,33,36,34,39,29,37,32,41,30,5,3,25,28,10);
+var controls = new Array('1','9','40','33','36','34','39','29','37','32','41','30','5','3','25','28','10');
+
 function arr2ele(arr) {
 	element = {};
 	for (j=0 ; j < arr.length ; j ++) {
@@ -27,7 +30,7 @@ exec('/usr/bin/amixer -c udrc contents', (err, stdout, stderr) => {
 	for (i=0 ; i < lines.length ; i++) {
 		proto = lines[i].trim();
 		if (proto.startsWith("numid")) {
-			if (i > 0) amixer.push(element);
+			if (i > 0 && controls.includes(element.specs.numid)) amixer.push(element);
 			element = {};
 			element.specs = arr2ele(proto.split(/,/));
 		}
@@ -59,7 +62,7 @@ exec('/usr/bin/amixer -c udrc contents', (err, stdout, stderr) => {
 /* GET home page. */
 router.get('/', function(req, res, next) {
 //	console.log(JSON.stringify(amixer,null,4));
-	res.render('index', { layout: 'layout', title: 'DRAWS™ Manager', mixer: amixer});
+	res.render('index', { layout: 'layout', controls: controls, title: 'DRAWS™ Manager', mixer: amixer});
 });
 
 

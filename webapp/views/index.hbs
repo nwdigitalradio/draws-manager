@@ -1,20 +1,17 @@
 <header id="pageHeader">{{title}}</header>
-<article id="mainArticle">
+<main id="mainArticle" class="inner-grid">
 {{#each mixer}}
+	<div class="inner-grid">
 	<div>
-	{{specs.name}} 
-	{{#if params.itemlist}}
-		<div>
-		<select name="select-{{../specs.numid}}">
-		{{#each params.itemlist}}
-			<option value="{{value}}" {{#compare value "==="  ../curvalues}}selected{{/compare}}>{{label}}</option> 
-		{{/each}} 
-		</select>
-		</div>
-	{{/if}}
+	{{specs.name}}  [{{specs.numid}}]
+	</div>
+	<div>
+	{{#compare params.type "===" "ENUMERATED"}} {{> enumerated }} {{/compare}}
+	{{#compare params.type "===" "BOOLEAN"}} BOOLEAN {{curvalues}} {{params.values}} {{> boolean }} {{/compare}}
+	</div>
 	</div>
 {{/each}}
-</article>
+</main>
 <nav id="mainNav">Navigation</nav>
 <div id="siteAds">TBD</div>
 <footer id="pageFooter"><a target="nwdr" href="https://nwdigitalradio.com">NW Digital Radio</a></footer>
