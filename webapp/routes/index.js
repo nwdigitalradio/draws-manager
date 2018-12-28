@@ -56,7 +56,7 @@ exec('/usr/bin/amixer -c udrc contents', (err, stdout, stderr) => {
 		}
 
 	}
-	amixer.push(element);
+	if (controls.includes(element.specs.numid)) amixer.push(element);
 });
 
 /* GET home page. */
