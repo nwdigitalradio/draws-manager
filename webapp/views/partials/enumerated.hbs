@@ -1,0 +1,7 @@
+{{#if params.itemlist}}
+	<select name="select-{{specs.numid}}">
+	{{#each params.itemlist}}
+		<option value="{{value}}" {{#compare value "==="  ../curvalues}}selected{{/compare}}>{{label}}</option> 
+	{{/each}} 
+	</select>
+{{/if}}

@@ -1,0 +1,6 @@
+{{#compare params.values "===" "1"}}
+	<input type="radio" value="on" id="{{specs.numid}}-id" name="{{specs.numid}}-radio" {{#compare "on" "===" curvalues}} checked {{/compare}} />
+	<label for="{{specs.numid}}-id">On</label>
+	<input type="radio" value="off" id="{{specs.numid}}-id" name="{{specs.numid}}-radio" {{#compare "off" "===" curvalues}} checked {{/compare}} />
+	<label for="{{specs.numid}}-id">Off</label>
+{{/compare}}
