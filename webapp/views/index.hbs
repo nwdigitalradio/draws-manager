@@ -1,5 +1,6 @@
 <header id="pageHeader">{{title}}</header>
 <main id="mainArticle" class="inner-grid">
+<h2>CODEC Settings</h2><div><img src="/images/mini-din-6-socket.svg" /></div>
 {{#each mixer}}
 	<div class="inner-grid">
 	<div>
@@ -7,7 +8,8 @@
 	</div>
 	<div>
 	{{#compare params.type "===" "ENUMERATED"}} {{> enumerated }} {{/compare}}
-	{{#compare params.type "===" "BOOLEAN"}} BOOLEAN {{curvalues}} {{params.values}} {{> boolean }} {{/compare}}
+	{{#compare params.type "===" "BOOLEAN"}} {{> boolean }} {{/compare}}
+	{{#compare params.type "===" "INTEGER"}} INTEGER {{curvalues}} {{/compare}}
 	</div>
 	</div>
 {{/each}}

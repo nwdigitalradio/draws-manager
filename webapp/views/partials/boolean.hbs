@@ -1,6 +1,18 @@
 {{#compare params.values "===" "1"}}
-	<input type="radio" value="on" id="{{specs.numid}}-id" name="{{specs.numid}}-radio" {{#compare "on" "===" curvalues}} checked {{/compare}} />
-	<label for="{{specs.numid}}-id">On</label>
-	<input type="radio" value="off" id="{{specs.numid}}-id" name="{{specs.numid}}-radio" {{#compare "off" "===" curvalues}} checked {{/compare}} />
-	<label for="{{specs.numid}}-id">Off</label>
+	<input type="radio" value="on" id="{{specs.numid}}-on" name="{{specs.numid}}-radio" {{#compare "on" "===" curvalues}} checked {{/compare}} />
+	<label for="{{specs.numid}}-on">On</label>
+	<input type="radio" value="off" id="{{specs.numid}}-off" name="{{specs.numid}}-radio" {{#compare "off" "===" curvalues}} checked {{/compare}} />
+	<label for="{{specs.numid}}-off">Off</label>
+{{/compare}}
+{{#compare params.values "===" "2"}}
+	Left: 
+	<input type="radio" value="on" id="{{specs.numid}}-on-left" name="{{specs.numid}}-radio-left" {{#compare "on" "===" curleft}} checked {{/compare}} />
+	<label for="{{specs.numid}}-on-left">On</label>
+	<input type="radio" value="off" id="{{specs.numid}}-off-left" name="{{specs.numid}}-radio-right" {{#compare "off" "===" curleft}} checked {{/compare}} />
+	<label for="{{specs.numid}}-off-left">Off</label>
+	Right: 
+	<input type="radio" value="on" id="{{specs.numid}}-on-right" name="{{specs.numid}}-radio-right" {{#compare "on" "===" curright}} checked {{/compare}} />
+	<label for="{{specs.numid}}-on-right">On</label>
+	<input type="radio" value="off" id="{{specs.numid}}-off-right" name="{{specs.numid}}-radio-right" {{#compare "off" "===" curright}} checked {{/compare}} />
+	<label for="{{specs.numid}}-off-left">Off</label>
 {{/compare}}
