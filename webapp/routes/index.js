@@ -10,8 +10,8 @@ var controls = new Array('1','9','40','33','36','34','39','29','37','32','41','3
 function arr2ele(arr) {
 	element = {};
 	for (j=0 ; j < arr.length ; j ++) {
-		[name, val] = arr[j].split(/=/);
-		element[name] = val;
+		[key, val] = arr[j].split(/=/);
+		element[key.trim().replace(/-/,'_')] = val.trim();
 	}
 	return element;
 }
@@ -58,6 +58,15 @@ exec('/usr/bin/amixer -c udrc contents', (err, stdout, stderr) => {
 
 		if (proto.startsWith("|")) {
 			element.comments = arr2ele(proto.slice(2).split(/,/));
+			if (element.comments.dBscale_min) {
+				var start = parseFloat(element.comments.dBscale_min.replace(/dB/,''));
+				var step = parseFloat(element.comments.step.replace(/dB/,''));
+				element.dbSteps = [];
+				
+				for (j = element.params.min; j <= element.params.max; j++) {
+					element.dbSteps[j] = start + (step * parseFloat(j));
+				}
+			}
 		}
 
 	}

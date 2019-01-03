@@ -9,7 +9,7 @@
 	<div>
 	{{#compare params.type "===" "ENUMERATED"}} {{> enumerated }} {{/compare}}
 	{{#compare params.type "===" "BOOLEAN"}} {{> boolean }} {{/compare}}
-	{{#compare params.type "===" "INTEGER"}} INTEGER {{curvalues}} {{/compare}}
+	{{#if dbSteps}} {{> dbList}} {{/if}}
 	</div>
 	</div>
 {{/each}}

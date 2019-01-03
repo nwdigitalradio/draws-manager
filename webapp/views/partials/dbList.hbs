@@ -1,0 +1,10 @@
+	<select name="select-{{specs.numid}}">
+	Left: 
+	{{#each dbSteps}}
+		<option value="{{this}}dB" {{#compare ../curleft "==="  index}}selected{{/compare}}>{{this}}</option> 
+	{{/each}}
+	Right: 
+	{{#each dbSteps}}
+		<option value="{{this}}dB" {{#compare ../curright "==="  index}}selected{{/compare}}>{{this}}</option> 
+	{{/each}} 
+	</select>
