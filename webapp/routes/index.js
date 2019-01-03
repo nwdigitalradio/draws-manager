@@ -5,7 +5,7 @@ const fs = require('fs');
 const readline = require('readline');
 var amixer = [];
 
-var controls = new Array('1','9','40','33','36','34','39','29','37','32','41','30','5','3','25','28','10');
+var controls = new Array('1','9','40','33','36','34','39','29','37','32','41','30','5','3','25','28','10','2','3','8');
 
 function arr2ele(arr) {
 	element = {};
