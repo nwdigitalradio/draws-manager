@@ -16,4 +16,40 @@
 </main>
 <nav id="mainNav">Navigation</nav>
 <div id="siteAds">TBD</div>
-<footer id="pageFooter"><a target="nwdr" href="https://nwdigitalradio.com">NW Digital Radio</a></footer>
+<footer id="pageFooter">
+	<span id="product"></span> /
+	<span id="model"></span><br/>
+	<span id="cputemp"></span> /
+	<span id="uptime"></span> /
+	<span id="loadavg"></span>
+</footer>
+<script>
+
+function setElement(id,str) {
+	var ele = document.getElementById(id);
+	ele.innerHTML = str;
+}
+
+(function () {
+	var socket = io();
+	socket.on('systemstats', function(data) {
+		if (data.model) setElement("model",data.model);
+		if (data.hat.product) setElement("product",data.hat.product);
+		if (data.cputemp) {
+			var cput = "CPU Temp: ";
+			cput += data.cputemp.f + "&deg; F (" + data.cputemp.c + "&deg; C)";
+			setElement("cputemp",cput);
+		}
+		if (data.uptime) {
+			var upstr = "Uptime:";
+			if (data.uptime.days > 0) upstr = upstr + " " + data.uptime.days + " days";
+			upstr += " " + data.uptime.hms + " (h:m:s)";
+			setElement("uptime",upstr);
+		}
+		if (data.loadavg) {
+			var la = "Load AVG: 1m:" + data.loadavg.one + " 5m:" + data.loadavg.five + " 15m:" + data.loadavg.fifteen;
+			setElement("loadavg", la);
+		}
+	});
+})();
+</script>

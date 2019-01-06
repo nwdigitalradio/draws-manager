@@ -3,15 +3,9 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8"/>
-		<script src="/socket.io/socket.io.js"></script>
-		<script>
-			var socket = io.connect('http://192.168.100.147:8080');
-			socket.on('connected', function(data){
-				console.log(data);
-			});
-		</script>
 		<title>{{title}}</title>
 		<link rel='stylesheet' href='/stylesheets/style.css' />
+		<script src="/socket.io/socket.io.js"></script>
 	</head>
 	<body>
 		{{{body}}}
