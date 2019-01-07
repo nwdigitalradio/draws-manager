@@ -2,6 +2,7 @@ var io = require('socket.io')();
 var fs = require('fs');
 var thermFile = '/sys/class/thermal/thermal_zone0/temp';
 var systemstatseconds = 60 * 1000;
+var systemstats = {};
 
 function trimNull(a) {
   var c = a.indexOf('\0');
@@ -57,7 +58,11 @@ var SecondsTohhmmss = function(totalSeconds) {
 
 
 function sysstats(socket) {
-	var systemstats = {};
+        socket.broadcast.emit("systemstats", systemstats);
+//	console.log('systats');
+}
+
+setInterval(function () {
 	systemstats['model'] = getModel();
 	systemstats['hat'] = hatRead();
 	fs.readFileSync("/proc/uptime").toString().split('\n').forEach( function(line) {
@@ -90,16 +95,16 @@ function sysstats(socket) {
         	});
 	}
         systemstats['timestamp'] = new Date().getTime();
-        socket.broadcast.emit("systemstats", systemstats);
-// #	console.log(JSON.stringify(systemstats));
-}
+//	console.log('capture');
+},1000);
 
 
 io.on('connection', function(socket) {
 	// console.log("Connected: ",socket);
 	sysstats(socket);
-	socket.on('connect', function(msg){ console.log(msg); });
+//	socket.on('connect', function(msg){ console.log(msg); });
 	setInterval(function() {sysstats(socket)},systemstatseconds);
 });
+
 
 module.exports = io;

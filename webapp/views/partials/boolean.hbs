@@ -5,15 +5,16 @@
 	<label for="{{specs.numid}}-off">Off</label>
 {{/compare}}
 {{#compare params.values "===" "2"}}
-	Left: 
+	{{#compare group "===" "left"}}
 	<input type="radio" value="on" id="{{specs.numid}}-on-left" name="{{specs.numid}}-radio-left" {{#compare "on" "===" curleft}} checked {{/compare}} />
 	<label for="{{specs.numid}}-on-left">On</label>
 	<input type="radio" value="off" id="{{specs.numid}}-off-left" name="{{specs.numid}}-radio-right" {{#compare "off" "===" curleft}} checked {{/compare}} />
 	<label for="{{specs.numid}}-off-left">Off</label>
-	<br/>
-	Right: 
+	{{/compare}}
+	{{#compare group "===" "right"}}
 	<input type="radio" value="on" id="{{specs.numid}}-on-right" name="{{specs.numid}}-radio-right" {{#compare "on" "===" curright}} checked {{/compare}} />
 	<label for="{{specs.numid}}-on-right">On</label>
 	<input type="radio" value="off" id="{{specs.numid}}-off-right" name="{{specs.numid}}-radio-right" {{#compare "off" "===" curright}} checked {{/compare}} />
 	<label for="{{specs.numid}}-off-left">Off</label>
 {{/compare}}
+	{{/compare}}

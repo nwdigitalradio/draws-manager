@@ -1,24 +1,66 @@
 <header id="pageHeader">{{title}}</header>
-<main id="mainArticle" class="inner-grid">
-<h2>CODEC Settings</h2><div><img src="/images/mini-din-6-socket.svg" /></div>
+<main id="mainArticle">
+<top id="topMain" class="inner-grid">
+	<h2>CODEC Settings</h2>
+</top>
+<left id="leftMain" class="inner-grid">
+	<h3>Left Mini DIN-6 <img src="/images/mini-din-6-socket.svg" /></h3>
 {{#each mixer}}
-	<div class="inner-grid">
+	{{#compare group "===" "left"}}
 	<div>
+	<div class="control">
 	{{specs.name}}  [{{specs.numid}}]
 	</div>
-	<div>
+	<div class="control">
 	{{#compare params.type "===" "ENUMERATED"}} {{> enumerated }} {{/compare}}
 	{{#compare params.type "===" "BOOLEAN"}} {{> boolean }} {{/compare}}
 	{{#if dbSteps}} {{> dbList}} {{/if}}
 	</div>
 	</div>
+	{{/compare}}
 {{/each}}
+</left>
+<right id="rightMain" class="inner-grid">
+	<h3>Right Mini DIN-6 <img src="/images/mini-din-6-socket.svg" /></h3>
+{{#each mixer}}
+	{{#compare group "===" "right"}}
+	<div>
+	<div class="control">
+	{{specs.name}}  [{{specs.numid}}]
+	</div>
+	<div class="control">
+	{{#compare params.type "===" "ENUMERATED"}} {{> enumerated }} {{/compare}}
+	{{#compare params.type "===" "BOOLEAN"}} {{> boolean }} {{/compare}}
+	{{#if dbSteps}} {{> dbList}} {{/if}}
+	</div>
+	</div>
+	{{/compare}}
+{{/each}}
+</right>
+<common id="commonMain">
+	<h3>Shared Controls</h3>
+{{#each mixer}}
+	{{#compare group "===" "common"}}
+	<div>
+	<div class="control">
+	{{specs.name}}  [{{specs.numid}}]
+	</div>
+	<div class="control">
+	{{#compare params.type "===" "ENUMERATED"}} {{> enumerated }} {{/compare}}
+	{{#compare params.type "===" "BOOLEAN"}} {{> boolean }} {{/compare}}
+	{{#if dbSteps}} {{> dbList}} {{/if}}
+	</div>
+	</div>
+	{{/compare}}
+{{/each}}
+</common>
 </main>
 <nav id="mainNav">Navigation</nav>
-<div id="siteAds">TBD</div>
+<div id="siteAds">
+</div>
 <footer id="pageFooter">
-	<span id="product"></span> /
-	<span id="model"></span><br/>
+	<span id="product"></span> <br/>
+	<span id="model"></span> |
 	<span id="cputemp"></span> /
 	<span id="uptime"></span> /
 	<span id="loadavg"></span>
@@ -42,8 +84,10 @@ function setElement(id,str) {
 		}
 		if (data.uptime) {
 			var upstr = "Uptime:";
-			if (data.uptime.days > 0) upstr = upstr + " " + data.uptime.days + " days";
-			upstr += " " + data.uptime.hms + " (h:m:s)";
+			if (data.uptime.days > 0) upstr += " " + data.uptime.days + " days";
+			var hms = data.uptime.hms.split(":");
+			if (parseInt(hms[0]) > 0) upstr += " " + hms[0] + " hrs";
+			upstr += " " + hms[1] + " mins";
 			setElement("uptime",upstr);
 		}
 		if (data.loadavg) {

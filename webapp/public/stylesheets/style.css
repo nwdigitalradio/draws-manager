@@ -1,66 +1,126 @@
 
 body { 
-  display: grid;
-  grid-template-areas: 
-    "header header ads"
-    "nav main main"
-    "nav footer footer";
-  grid-template-rows: 80px 1fr 70px;  
-  grid-template-columns: 20% 1fr 15%;
-  grid-row-gap: 10px;
-  grid-column-gap: 10px;
-  height: 100vh;
-  margin: 0;
-  }  
+	display: grid;
+	grid-template-areas: 
+	"header header ads"
+	"nav main main"
+	"nav footer footer";
+	grid-template-rows: 80px 1fr 80px;  
+	grid-template-columns: 20% 1fr 15%;
+	height: 100vh;
+	margin: 0;
+}  
+
+
 
 .inner-grid {
-  float: left;
-  min-width: 49%;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 5px;
+	display: grid;
+	grid-template-areas:
+	"top"
+	"left right"
+	"common";
+	grid-template-columns: none;
+	/* grid-column-gap: 5;
+	grid-row-gap: 5; */
 }
-.inner-grid > div {
-  background: darkred;
-  color: white;
-  padding: 10px;
-}
-    
-header, footer, main, nav, div {
-  padding: 1.2em;
-  background: lightgrey;
-  }
-#pageHeader {
-  grid-area: header;
-  }
-#pageFooter {
-  grid-area: footer;
-  }
-#mainArticle { 
-  grid-area: main;      
-  }
-#mainNav { 
-  grid-area: nav; 
-  }
-#siteAds { 
-  grid-area: ads; 
-  } 
 
-footer {
-  background: black;
-  color: white;
-  }
+left, right {
+	width: 50%;
+	float: left;
+}
+
+top, common {
+	background: white;
+	color: black;
+	padding: 1em;
+	width: 100%;
+	clear: both;
+}
+
+
+
+div.control {
+	background: darkred;
+	color: white;
+	padding: 1em;
+}
+
+#topMain {
+	grid-area: top;
+}
+#leftMain {
+	grid-area: left;
+}
+#rightMain {
+	grid-area: right;
+}
+#commonMain {
+	grid-area: common;
+}
+
+#leftMain h3 {
+	text-align: center;
+	background: beige;
+	border: 1px black;
+}
+
+#rightMain h3 {
+	text-align: center;
+	background: beige;
+	border: 1px black;
+}
+
+#commonMain h3 {
+	text-align: center;
+	background: beige;
+	border: 1px black;
+}
+
+header, footer, main, nav, {
+	padding: 1.2em;
+	background: white;
+	color: black;
+}
+
+#pageHeader {
+	grid-area: header;
+}
+#pageFooter {
+	grid-area: footer;
+}
+#mainArticle { 
+	grid-area: main;      
+}
+#mainNav { 
+	grid-area: nav; 
+	background: blue;
+	color: white;
+}
+#siteAds { 
+	grid-area: ads; 
+} 
+	
+#siteAds img {
+	height: 100%;
+	padding: 1px;
+}
+
+footer,header,ads {
+	background: black;
+	color: white;
+	padding: 10px;
+}
 
 /* Stack the layout on small devices/viewports. */
 @media all and (max-width: 575px) {
-  body { 
-    grid-template-areas: 
-      "header"
-      "main"
-      "ads"
-      "nav"
-      "footer";
-    grid-template-rows: 80px 1fr 70px 1fr 70px;  
-    grid-template-columns: 1fr;
- }
+	body { 
+		grid-template-areas: 
+		"header"
+		"main"
+		"ads"
+		"nav"
+		"footer";
+		grid-template-rows: 80px 1fr 70px 1fr 70px;  
+		grid-template-columns: 1fr;
+	}
 }
