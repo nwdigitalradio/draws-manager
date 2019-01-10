@@ -4,6 +4,7 @@ const { exec } = require('child_process');
 const fs = require('fs');
 const readline = require('readline');
 var amixer = [];
+const stats = require('../io.js').systemstats;
 
 Array.prototype.unique = function() {
 	var a = this.concat();
@@ -18,7 +19,7 @@ Array.prototype.unique = function() {
 
 var controlleft = [1,2,5,12,28,39,40,43]; // 4,9,10,13,14,15,17,18,19,20,21,22,23,24,25,26,27,37
 var controlright = [1,3,5,12,31,32,33,36]; // 4,9,11,13,14,16,17,18,19,20,21,22,23,24,25,29,30,42,44,45
-var controlcommon = [7,8,25]; // 6
+var controlcommon = [7,8]; // 6,25
 var controls = controlleft.concat(controlright.concat(controlcommon)).unique().sort(function(a, b){return a - b});
 
 function arr2ele(arr) {
@@ -103,13 +104,13 @@ exec('/usr/bin/amixer -c udrc contents', (err, stdout, stderr) => {
 			}
 		}
 	}
-	console.log(JSON.stringify(amixer,null,4));
+	// console.log(JSON.stringify(amixer,null,4));
 });
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
 //	console.log(JSON.stringify(amixer,null,4));
-	res.render('index', { layout: 'layout', controls: controls, title: 'DRAWS™ Manager', mixer: amixer});
+	res.render('index', { layout: 'layout', controls: controls, title: 'DRAWS™ Manager', mixer: amixer, stats: stats});
 });
 
 

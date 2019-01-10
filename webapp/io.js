@@ -1,7 +1,7 @@
 var io = require('socket.io')();
 var fs = require('fs');
 var thermFile = '/sys/class/thermal/thermal_zone0/temp';
-var systemstatseconds = 60 * 1000;
+var systemstatseconds = 20 * 1000;
 var systemstats = {};
 
 function trimNull(a) {
@@ -62,9 +62,14 @@ function sysstats(socket) {
 //	console.log('systats');
 }
 
+systemstats['hat'] =  hatRead();
+systemstats['model'] = getModel();
+
+function getStats(){
+	return systemstats;
+}
+
 setInterval(function () {
-	systemstats['model'] = getModel();
-	systemstats['hat'] = hatRead();
 	fs.readFileSync("/proc/uptime").toString().split('\n').forEach( function(line) {
 		if (line.trim().length > 0) {
 			var timex = line.split(" ");
@@ -100,11 +105,9 @@ setInterval(function () {
 
 
 io.on('connection', function(socket) {
-	// console.log("Connected: ",socket);
 	sysstats(socket);
-//	socket.on('connect', function(msg){ console.log(msg); });
 	setInterval(function() {sysstats(socket)},systemstatseconds);
 });
 
-
+io.systemstats = getStats();
 module.exports = io;

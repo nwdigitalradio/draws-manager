@@ -43,6 +43,7 @@ div.control {
 	background: darkred;
 	color: white;
 	padding: 1em;
+	display: block;
 }
 
 #topMain {
@@ -110,6 +111,10 @@ footer,header,ads {
 	color: white;
 	padding: 10px;
 }
+
+input[type=checkbox]:checked ~ div.control {
+	   background: green;
+	      display: 
 
 /* Stack the layout on small devices/viewports. */
 @media all and (max-width: 575px) {
