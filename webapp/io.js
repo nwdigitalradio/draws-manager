@@ -2,7 +2,6 @@ var io = require('socket.io')();
 var express = require('express');
 var fs = require('fs');
 const exec = require('child_process').execSync;
-const readline = require('readline');
 const Amixer = require('./amixer.js');
 const MixerState = require('./mixerState');
 let mixer = new Amixer();
@@ -17,6 +16,20 @@ function trimNull(a) {
     return a.substr(0, c);
   }
   return a;
+}
+
+function getSensors() {
+	let senbuf = exec('/usr/bin/sensors');
+	let lines = senbuf.toString().split(/\r?\n/);
+	let sensors = [];
+	for (let i=0; i < lines.length; i++) {
+		let line = lines[i];
+		if (line.includes(':')) {
+			[key,val] = line.split(/:/);
+			sensors.push({label:key,value:val.trim()});
+		}
+	}
+	return {sensors:sensors};
 }
 
 function getModel() {
@@ -79,6 +92,7 @@ setInterval(function () {
 	let ms = new MixerState();
 	mixer.setState(ms.limited());
 	systemstats['mixer'] = mixer;
+	systemstats['sensors'] = getSensors();
 	fs.readFileSync("/proc/uptime").toString().split('\n').forEach( function(line) {
 		if (line.trim().length > 0) {
 			var timex = line.split(" ");
@@ -116,7 +130,7 @@ setInterval(function () {
 io.on('connection', function(socket) {
 	socket.emit({"mixerstate":new MixerState()});
 	sysstats(socket);
-	setInterval(function() {sysstats(socket)},systemstatseconds);
+	setInterval(function() {sysstats(socket)},1000);
 });
 
 

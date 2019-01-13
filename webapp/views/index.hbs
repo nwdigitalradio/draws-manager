@@ -47,7 +47,6 @@
 	Load AVG: <span id="loadavg">(Collecting)</span>
 </footer>
 <script>
-{{JSONstringify controls}}
 function setElement(id,str) {
 	var ele = document.getElementById(id);
 	ele.innerHTML = str;
@@ -81,8 +80,8 @@ function setElement(id,str) {
 			var la = " 1m:" + data.loadavg.one + " 5m:" + data.loadavg.five + " 15m:" + data.loadavg.fifteen;
 			setElement("loadavg", la);
 		}
-		console.log(data.controls);
 		console.log(data.mixer);
+		console.log(data.sensors);
 	});
 })();
 </script>
