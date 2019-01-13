@@ -27,6 +27,7 @@ body {
 left, right {
 	width: 50%;
 	float: left;
+	border: black 1px solid;
 }
 
 top, common {
@@ -44,6 +45,7 @@ div.control {
 	color: white;
 	padding: 1em;
 	display: block;
+	float: left;
 }
 
 #topMain {

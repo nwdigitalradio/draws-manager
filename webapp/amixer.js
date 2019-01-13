@@ -1,14 +1,14 @@
 class DINControl {
 	constructor() {
-		this.pcmvol = 0;
-		this.lodigvol = 0;
-		this.adcvol = 0;
-		this.negres = 0;
-		this.powertune = 0;
-		this.in1res = 0;
-		this.in2res = 0;
-		this.dacswitch = 0;
-		this.DacPlaybackSwitch = 0;
+		this.pcmvol = 0;	//1 PCM Playback Volume
+		this.lodigvol = 0;	//5 LO Driver Gain Volume
+		this.adcvol = 0;	//12 ADC Level Volume
+		this.negres = 1;	//36 CM_R to Right Mixer Neg / 43 CM_L to Left Mixer Neg
+		this.powertune = 0;	//2 DAC Left Playback Powertune / 3 DAC Right Powertune
+		this.in1res = 0;	//32 IN1_R / 39 IN_L
+		this.in2res = 1;	//33 IN1_R / 40 IN_L
+		this.dacswitch = 0;	//7 LO DAC Playback Switch
+		this.dacplaysw = "on";	//28,31 LOx Outpet Mixer x_DAC Switch
 
 	}
 
@@ -17,7 +17,7 @@ class DINControl {
 	}
 
 	setDigitalVol(val) {
-		this.lodigval = val;
+		this.lodigvol = val;
 	}
 	
 	setInputVol(val) {
@@ -40,6 +40,10 @@ class DINControl {
 		this.in1res = val;
 	}
 
+	setDACSwitch(val) {
+		this.dacplaysw = val;
+	}
+
 	setOutputSwitch(val) {
 		this.dacswitch = val;
 	}
@@ -49,7 +53,7 @@ class DINControl {
 	}
 
 	getDigitalVol() {
-		return this.lodigval;
+		return this.lodigvol;
 	}
 	
 	getInputVol() {
@@ -76,26 +80,23 @@ class DINControl {
 		return this.dacswitch;
 	}
 
-	setDACSwitch(val) {
-		this.DacPlaybackSwitch = val;
-	}
 
 	getDACSwitch() {
-		return ehis.DacPlaybackSwitch;
+		return this.dacplaysw;
 	}
 }
 
 class CommonControl {
 	constructor() {
-		this.PlaybackCMSwitch = 0;
+		this.playbackcmsw = 0;	//8 LO Playback Common Mode Switch
 	}
 
 	setCMSwitch(val) {
-		this.PlaybackCMSwitch = 0;
+		this.playbackcmsw = val;
 	}
 
 	getCMSwitch() {
-		returnthis.PlaybackCMSwitch;
+		return this.playbackcmsw;
 	}
 }
 
@@ -108,7 +109,7 @@ class Amixer {
 	}
 
 	setState(controls) {
-		for (i=0 ; i < controls.length ; i++) {
+		for (let i=0 ; i < controls.length ; i++) {
 			var control = controls[i];
 			switch(parseInt(control.specs.numid)) {
 				case 1: 
