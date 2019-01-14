@@ -71,15 +71,12 @@ class MixerState {
 		let controls = controlleft.concat(controlright.concat(controlcommon)).unique().sort(function(a, b){return a - b});
 		let limitedset = new Array();
 		for (let ctl = 0; ctl < this.controlset.length; ctl++) {
-			if (controls.includes(this.controlset[ctl].id)) limitedset.push(this.controlset[ctl]);
+			if (controls.includes(this.controlset[ctl].id)) {
+				limitedset.push(this.controlset[ctl]);
+			}
 		}
 		return limitedset;
 	}
 }
-/*
-let x = new mixerState();
-console.log(x.controlset.length);
-let y = x.limited();
-console.log(y.length);
-*/
+
 module.exports = MixerState;

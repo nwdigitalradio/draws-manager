@@ -5,33 +5,18 @@
 </top>
 <left id="leftMain" class="inner-grid">
 	<h3>Left Mini DIN-6 <img src="/images/mini-din-6-socket.svg" /></h3>
-	<div class="control">Digital Volume to TX</div>
-	<div class="control">
-		{{>logain selectid='left-lodigvol'}}
-	</div>
-	<div class="control">Analog Volume to TX</div>
-	<div class="control">
-		{{>pcmselect selectid='left-pcmvol'}}
-	</div>
-	<div class="control">Analog from the RX</div>
-	<div class="control">
-		{{>adcselect selectid='left-adcvol'}}
-	</div>
+	<div class="control">Output to TX: Digital Gain {{>logain selectid='left-lodigvol'}} 
+	Analog Gain {{>pcmselect selectid='left-pcmvol'}}</div>
+	<div class="control">Input from RX: 
+	Source {{>audiorx selectid='left-audiorx'}} Gain {{>adcselect selectid='left-adcvol'}}</div>
 </left>
 <right id="rightMain" class="inner-grid">
 	<h3>Right Mini DIN-6 <img src="/images/mini-din-6-socket.svg" /></h3>
-	<div class="control">Digital Volume to TX</div>
-	<div class="control">
-		{{>logain selectid='right-lodigvol'}}
-	</div>
-	<div class="control">Analog Volume to TX</div>
-	<div class="control">
-		{{>pcmselect selectid='right-pcmvol'}}
-	</div>
-	<div class="control">Analog from the RX</div>
-	<div class="control">
-		{{>adcselect selectid='right-adcvol'}}
-	</div>
+	<div class="control">Output to TX: Digital Gain {{>logain selectid='right-lodigvol'}} 
+	Analog Gain {{>pcmselect selectid='right-pcmvol'}}</div>
+	<div class="control">Input from RX: 
+	Source {{>audiorx selectid='right-audiorx'}} Gain {{>adcselect selectid='right-adcvol'}}</div>
+</right>
 <common id="commonMain">
 	<h3>Shared Controls</h3>
 </common>
@@ -40,22 +25,101 @@
 <div id="siteAds">
 </div>
 <footer id="pageFooter">
-	<span id="product">{{stats.hat.product}}</span> <br/>
+	<div>
+	<span id="product">{{stats.hat.product}}</span> | 
+	<span id="sensors"> </span>
+	</div>
+	<div>
 	<span id="model">{{stats.model}}</span> |
 	CPU Temp: <span id="cputemp">{{stats.cputemp.f}} &deg; F ({{stats.cputemp.c}} &deg; C)</span> /
 	Uptime: <span id="uptime">(Collecting)</span> /
 	Load AVG: <span id="loadavg">(Collecting)</span>
+	</div>
 </footer>
 <script>
+const socket = io.connect();
+console.log(socket);
+
+function sset(control) {
+	let val = "";
+	switch(parseInt(control)) {
+		case 1: 
+			val += document.getElementById("left-pcmvol").value;
+			val += "," + document.getElementById("right-pcmvol").value;
+			break;
+		case 2:
+			// this.left.setPowerTune(control.curvalues);
+			break;
+		case 3:
+			// this.right.setPowerTune(control.curvalues);
+			break;
+		case 5:
+			val += document.getElementById("left-lodigvol").value;
+			val += "," + document.getElementById("right-lodigvol").value;
+			break;
+		case 7:
+			// this.left.setDACSwitch(control.curleft);
+			// this.right.setDACSwitch(control.curright);
+			break;
+		case 8:
+			// this.common.setCMSwitch(control.curvalues);
+			break;
+		case 12:
+			val += document.getElementById("left-adcvol").value;
+			val += "," + document.getElementById("right-adcvol").value;
+			break;
+		case 28:
+			// this.left.setOutputSwitch(control.curvalues);
+			break;
+		case 31:
+			// this.right.setOutputSwitch(control.curvalues);
+			break;
+		case 32:
+			// this.right.setDiscInResistor(control.curvalues);
+			break;
+		case 33:
+			// this.right.setAFinResistor(control.curvalues);
+			break;
+		case 36:
+			// this.right.setNegativeResistor(control.curvalues);
+			break;
+		case 39:
+			// this.left.setDiscInResistor(control.curvalues);
+			break;
+		case 40:
+			// this.left.setAFinResistor(control.curvalues);
+			break;
+		case 43:
+			// this.left.setNegativeResistor(control.curvalues);
+			break;
+		default: 
+			val = "Unknown";
+			break;
+	}
+	
+	let message ={control:control,value:val};
+	socket.emit('sset',message,function(data){console.log(data)});
+	console.log(message);
+}
+
 function setElement(id,str) {
 	var ele = document.getElementById(id);
-	ele.innerHTML = str;
+	if (ele) ele.innerHTML = str
+	else console.log("Failed to find ID=" + id);
 }
 
 (function () {
-	var socket = io();
 	socket.on('systemstats', function(data) {
-
+		socket.send('sset','test');
+		if (data.sensors) {
+			let sensors = data.sensors;
+			let sensdata = "";
+			for (let s=0; s < sensors.length; s++) {
+				sensdata += sensors[s].label + ": " + sensors[s].value;
+				if (s < (sensors.length - 1)) sensdata += " / ";
+			}
+			setElement("sensors",sensdata);
+		}
 		if (data.model) setElement("model",data.model);
 		if (data.hat.product) {
 			let prodtitle = "Vendor: " + data.hat.vendor + ", Product ID: " + data.hat.product_id + ", Version: " + data.hat.product_ver;
@@ -80,8 +144,20 @@ function setElement(id,str) {
 			var la = " 1m:" + data.loadavg.one + " 5m:" + data.loadavg.five + " 15m:" + data.loadavg.fifteen;
 			setElement("loadavg", la);
 		}
-		console.log(data.mixer);
-		console.log(data.sensors);
+		if (data.mixer) {
+			let leftdin = data.mixer.left;	
+			let rightdin = data.mixer.right;	
+			let commonset = data.mixer.common;
+			
+			document.getElementById("left-pcmvol").value = leftdin.pcmvol;
+			document.getElementById("right-pcmvol").value = rightdin.pcmvol;
+			document.getElementById("left-adcvol").value = leftdin.adcvol;
+			document.getElementById("right-adcvol").value = rightdin.adcvol;
+			document.getElementById("left-lodigvol").value = leftdin.lodigvol;
+			document.getElementById("right-lodigvol").value = rightdin.lodigvol;
+			
+		}
+	//	console.log(data.mixer);
 	});
 })();
 </script>

@@ -9,6 +9,22 @@ let mixer = new Amixer();
 let thermFile = '/sys/class/thermal/thermal_zone0/temp';
 let systemstatseconds = 20 * 1000;
 let systemstats = {};
+let controlnames = new Array();
+	controlnames[1] = 'PCM';
+	controlnames[2] = 'DAC Left Playback PowerTune Switch';
+	controlnames[3] = 'DAC Right Playback PowerTune Switch';
+	controlnames[5] = 'LO Driver Gain';
+	controlnames[7] = 'LO DAC';
+	controlnames[8] = 'LO Playback Common Mode Switch';
+	controlnames[12] = 'ADC Level';
+	controlnames[28] = 'LOL Output Mixer L_DAC';
+	controlnames[31] = 'LOR Output Mixer R_DAC';
+	controlnames[32] = 'IN1_R to Right Mixer Positive Resistor';
+	controlnames[33] = 'IN2_R to Right Mixer Positive Resistor';
+	controlnames[36] = 'CM_R to Right Mixer Negative Resistor';
+	controlnames[39] = 'IN1_L to Left Mixer Positive Resistor';
+	controlnames[40] = 'IN2_L to Left Mixer Positive Resistor';
+	controlnames[43] = 'CM_L to Left Mixer Negative Resistor';
 
 function trimNull(a) {
   var c = a.indexOf('\0');
@@ -29,7 +45,7 @@ function getSensors() {
 			sensors.push({label:key,value:val.trim()});
 		}
 	}
-	return {sensors:sensors};
+	return sensors;
 }
 
 function getModel() {
@@ -128,11 +144,17 @@ setInterval(function () {
 
 
 io.on('connection', function(socket) {
-	socket.emit({"mixerstate":new MixerState()});
+//	socket.emit({"mixerstate":new MixerState()});
+	socket.on('sset', function(data) { 
+		let command = "/usr/bin/amixer -c udrc sset '" + controlnames[data.control] + "' "
+			+ data.value;
+		console.log(command);
+		exec(command);
+	});
 	sysstats(socket);
 	setInterval(function() {sysstats(socket)},1000);
-});
 
+});
 
 io.controls = new MixerState().limited();
 io.systemstats = getStats();
