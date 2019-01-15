@@ -11,11 +11,11 @@ let systemstatseconds = 20 * 1000;
 let systemstats = {};
 let controlnames = new Array();
 	controlnames[1] = 'PCM';
-	controlnames[2] = 'DAC Left Playback PowerTune Switch';
-	controlnames[3] = 'DAC Right Playback PowerTune Switch';
+	controlnames[2] = 'DAC Left Playback PowerTune';
+	controlnames[3] = 'DAC Right Playback PowerTune';
 	controlnames[5] = 'LO Driver Gain';
 	controlnames[7] = 'LO DAC';
-	controlnames[8] = 'LO Playback Common Mode Switch';
+	controlnames[8] = 'LO Playback Common Mode';
 	controlnames[12] = 'ADC Level';
 	controlnames[28] = 'LOL Output Mixer L_DAC';
 	controlnames[31] = 'LOR Output Mixer R_DAC';
@@ -146,8 +146,8 @@ setInterval(function () {
 io.on('connection', function(socket) {
 //	socket.emit({"mixerstate":new MixerState()});
 	socket.on('sset', function(data) { 
-		let command = "/usr/bin/amixer -c udrc sset '" + controlnames[data.control] + "' "
-			+ data.value;
+		let command = "/usr/bin/amixer -c udrc sset '" + controlnames[data.control] + "' '"
+			+ data.value + "'";
 		console.log(command);
 		exec(command);
 	});

@@ -2,50 +2,71 @@
 body { 
 	display: grid;
 	grid-template-areas: 
-	"header header ads"
-	"nav main main"
-	"nav footer footer";
-	grid-template-rows: 80px 1fr 80px;  
-	grid-template-columns: 20% 1fr 15%;
-	height: 100vh;
+	"header header"
+	"nav main"
+	"footer footer";
+	grid-template-rows: auto 1fr auto;  
+	grid-template-columns: auto 1fr;
+	height: 95vh;
 	margin: 0;
 }  
+#pageHeader {
+	grid-area: header;
+}
+#pageFooter {
+	grid-area: footer;
+}
+#mainArticle { 
+	grid-area: main;      
+}
+#mainNav { 
+	grid-area: nav; 
+	background: blue;
+	color: white;
+	text-align: center;
+}
 
+footer {
+	/*
+	 position: absolute;
+	bottom: 0;
+	*/
+}
+	
+footer,header {
+	background: black;
+	color: white;
+/*	padding: .5em 1em .5em 1em; */
+	text-align: center;
+	width: 100%;
+}
 
-
-.inner-grid {
+#inner-grid {
 	display: grid;
 	grid-template-areas:
-	"top"
-	"left right"
-	"common";
-	grid-template-columns: none;
+		"top top"
+		"left right"
+		"common common";
+	grid-template-columns: 1fr 1fr;
 	/* grid-column-gap: 5;
 	grid-row-gap: 5; */
 }
 
-left, right {
-	width: 50%;
-	float: left;
+left, right, common {
 	border: black 1px solid;
 }
 
-top, common {
+top {
 	background: white;
 	color: black;
 	padding: 1em;
-	width: 100%;
-	clear: both;
 }
-
-
 
 div.control {
 	background: darkred;
 	color: white;
-	padding: 1em;
-	display: block;
-	float: left;
+	padding: .5em 1em .5em 1em;
+/*	float: left; */
 }
 
 #topMain {
@@ -61,62 +82,10 @@ div.control {
 	grid-area: common;
 }
 
-#leftMain h3 {
+h3 {
 	text-align: center;
 	background: beige;
-	border: 1px black;
 }
-
-#rightMain h3 {
-	text-align: center;
-	background: beige;
-	border: 1px black;
-}
-
-#commonMain h3 {
-	text-align: center;
-	background: beige;
-	border: 1px black;
-}
-
-header, footer, main, nav, {
-	padding: 1.2em;
-	background: white;
-	color: black;
-}
-
-#pageHeader {
-	grid-area: header;
-}
-#pageFooter {
-	grid-area: footer;
-}
-#mainArticle { 
-	grid-area: main;      
-}
-#mainNav { 
-	grid-area: nav; 
-	background: blue;
-	color: white;
-}
-#siteAds { 
-	grid-area: ads; 
-} 
-	
-#siteAds img {
-	height: 100%;
-	padding: 1px;
-}
-
-footer,header,ads {
-	background: black;
-	color: white;
-	padding: 10px;
-}
-
-input[type=checkbox]:checked ~ div.control {
-	   background: green;
-	      display: 
 
 /* Stack the layout on small devices/viewports. */
 @media all and (max-width: 575px) {
@@ -124,10 +93,9 @@ input[type=checkbox]:checked ~ div.control {
 		grid-template-areas: 
 		"header"
 		"main"
-		"ads"
 		"nav"
 		"footer";
-		grid-template-rows: 80px 1fr 70px 1fr 70px;  
+		grid-template-rows: auto 1fr 1fr auto;  
 		grid-template-columns: 1fr;
 	}
 }
