@@ -8,7 +8,7 @@ class DINControl {
 		this.in1res = 0;	//32 IN1_R / 39 IN_L
 		this.in2res = 1;	//33 IN1_R / 40 IN_L
 		this.dacswitch = 0;	//7 LO DAC Playback Switch
-		this.dacplaysw = "on";	//28,31 LOx Outpet Mixer x_DAC Switch
+		this.dacplaysw = "on";	//28,31 LOx Output Mixer x_DAC Switch
 
 	}
 

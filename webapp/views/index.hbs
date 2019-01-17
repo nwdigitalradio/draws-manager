@@ -6,16 +6,18 @@
 </top>
 <left id="leftMain">
 	<h3>Left Mini DIN-6 <img src="/images/mini-din-6-socket.svg" /></h3>
-	<div class="control">Input from RX: 
-	Source {{>audiorx selectid='left-audiorx'}} Gain {{>adcselect selectid='left-adcvol'}}</div>
-	<div class="control">Output to TX: Digital Gain {{>logain selectid='left-lodigvol'}} 
+	<div class="control">Input from RX:<br/> 
+	Source {{>audiorx selectid='left-audiorx'}} &bull; Analog Gain {{>adcselect selectid='left-adcvol'}}</div>
+	<div class="control">Output to TX:<br/>
+	Digital Gain {{>logain selectid='left-lodigvol'}} &bull;
 	Analog Gain {{>pcmselect selectid='left-pcmvol'}}</div>
 </left>
 <right id="rightMain">
 	<h3>Right Mini DIN-6 <img src="/images/mini-din-6-socket.svg" /></h3>
-	<div class="control">Input from RX: 
-	Source {{>audiorx selectid='right-audiorx'}} Gain {{>adcselect selectid='right-adcvol'}}</div>
-	<div class="control">Output to TX: Digital Gain {{>logain selectid='right-lodigvol'}} 
+	<div class="control">Input from RX:<br/> 
+	Source {{>audiorx selectid='right-audiorx'}} &bull; Analog Gain {{>adcselect selectid='right-adcvol'}}</div>
+	<div class="control">Output to TX:<br/> 
+	Digital Gain {{>logain selectid='right-lodigvol'}} &bull;  
 	Analog Gain {{>pcmselect selectid='right-pcmvol'}}</div>
 </right>
 <common id="commonMain">
@@ -32,8 +34,8 @@
 	</div>
 	<div>
 	<span id="model">{{stats.model}}</span> |
-	CPU Temp: <span id="cputemp">{{stats.cputemp.f}} &deg; F ({{stats.cputemp.c}} &deg; C)</span> /
-	Uptime: <span id="uptime">(Collecting)</span> /
+	CPU Temp: <span id="cputemp">{{stats.cputemp.f}} &deg; F ({{stats.cputemp.c}} &deg; C)</span> &bull;
+	Uptime: <span id="uptime">(Collecting)</span> &bull;
 	Load AVG: <span id="loadavg">(Collecting)</span>
 	</div>
 </footer>
@@ -114,6 +116,87 @@ function sset(control) {
 	console.log(message);
 }
 
+function DACset() {
+	let message = {};
+	let lv = document.getElementById('left-audiorx').value;
+	let rv = document.getElementById('right-audiorx').value;
+	console.log(lv + " " + rv);
+	let leftdacswitch = "on";
+	let leftdacplaysw = "on";
+	let rightdacswitch = "on";
+	let rightdacplaysw = "on";
+	switch (lv) {
+		case "off" :
+			message = {control:40,value:'Off'};
+			socket.emit('sset',message,function(data){console.log(data)});
+			message = {control:39,value:'Off'};
+			socket.emit('sset',message,function(data){console.log(data)});
+			leftdacswitch = "off";
+			leftdacplaysw = "off";
+			break;
+		case 'af' :
+			message = {control:40,value:'10 kOhm'}; // 10KOhm
+			socket.emit('sset',message,function(data){console.log(data)});
+			message = {control:39,value:'Off'}; // off
+			socket.emit('sset',message,function(data){console.log(data)});
+			break;
+		case 'disc' :
+			message = {control:40,value:'Off'};
+			socket.emit('sset',message,function(data){console.log(data)});
+			message = {control:39,value:'10 kOhm'};
+			socket.emit('sset',message,function(data){console.log(data)});
+			break;
+		default : 
+			console.log('Left DAC Bad ' + lv);
+			break;
+	}	
+	switch (rv) {
+		case "off" :
+			message = {control:33,value:'Off'}; 
+			socket.emit('sset',message,function(data){console.log(data)});
+			message = {control:32,value:'Off'};
+			socket.emit('sset',message,function(data){console.log(data)});
+			rightdacswitch = "off";
+			rightdacplaysw = "off";
+			break;
+		case 'af' :
+			message = {control:33,value:'10 kOhm'}; // 10KOhm
+			socket.emit('sset',message,function(data){console.log(data)});
+			message = {control:32,value:'Off'}; // off
+			socket.emit('sset',message,function(data){console.log(data)});
+			break;
+		case 'disc' :
+			message = {control:33,value:'Off'};
+			socket.emit('sset',message,function(data){console.log(data)});
+			message = {control:32,value:'10 kOhm'};
+			socket.emit('sset',message,function(data){console.log(data)});
+			break;
+		default : 
+			console.log('Right DAC Bad ' + lv);
+			break;
+	}	
+
+	// set left and right neg resistors
+	message = {control:36,value:'10 kOhm'}; // 10KOhm
+	socket.emit('sset',message,function(data){console.log(data)});
+	message = {control:43,value:'10 kOhm'}; // 10KOhm
+	socket.emit('sset',message,function(data){console.log(data)});
+
+	let msgdacswitch = leftdacswitch + "," + rightdacswitch;
+	message = {control:7,value:msgdacswitch};
+	socket.emit('sset',message,function(data){console.log(data)});
+	console.log(message);
+
+	message = {control:28,value:leftdacplaysw};
+	socket.emit('sset',message,function(data){console.log(data)});
+	console.log(message);
+
+	message = {control:31,value:rightdacplaysw};
+	socket.emit('sset',message,function(data){console.log(data)});
+	console.log(message);
+
+}
+
 function setElement(id,str) {
 	var ele = document.getElementById(id);
 	if (ele) ele.innerHTML = str
@@ -128,7 +211,7 @@ function setElement(id,str) {
 			let sensdata = "";
 			for (let s=0; s < sensors.length; s++) {
 				sensdata += sensors[s].label + ": " + sensors[s].value;
-				if (s < (sensors.length - 1)) sensdata += " / ";
+				if (s < (sensors.length - 1)) sensdata += " &bull; ";
 			}
 			setElement("sensors",sensdata);
 		}
@@ -168,7 +251,17 @@ function setElement(id,str) {
 			document.getElementById("left-lodigvol").value = leftdin.lodigvol;
 			document.getElementById("right-lodigvol").value = rightdin.lodigvol;
 			document.getElementById("playbackcmsw").value = commonset.playbackcmsw;
-			
+			if (leftdin.dacswitch == "off" || leftdin.dacplaysw == "off") document.getElementById("left-audiorx").value = "off";
+			else {
+				if (leftdin.in1res == "1") document.getElementById("left-audiorx").value = "disc";
+				if (leftdin.in2res == "1") document.getElementById("left-audiorx").value = "af";
+			}
+
+			if (rightdin.dacswitch == "off" || rightdin.dacplaysw == "off") document.getElementById("right-audiorx").value = "off";
+			else {
+				if (rightdin.in1res == "1") document.getElementById("right-audiorx").value = "disc";
+				if (rightdin.in2res == "1") document.getElementById("right-audiorx").value = "af";
+			}
 		}
 //		console.log(data.mixer);
 	});

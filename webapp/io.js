@@ -152,6 +152,7 @@ io.on('connection', function(socket) {
 		exec(command);
 	});
 	sysstats(socket);
+	console.log(JSON.stringify(systemstats.mixer,null,4));
 	setInterval(function() {sysstats(socket)},1000);
 
 });
