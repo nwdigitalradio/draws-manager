@@ -1,0 +1,6 @@
+<div class="dinhead"><h3><img src="/images/mini-din-6-socket.svg" /> {{capitalize side}} Mini DIN-6</h3></div>
+<div class="control">Input from Reciever:<br/>
+Source {{>audiorx selectid=(append side "-audiorx")}} &bull; Analog Gain {{>adcselect selectid=(append side "-adcvol")}}</div>
+<div class="control">Output to Transmitter:<br/>
+Digital Gain {{>logain selectid=(append side "-lodigvol")}} &bull;
+Analog Gain {{>pcmselect selectid=(append side "-pcmvol")}}</div> 

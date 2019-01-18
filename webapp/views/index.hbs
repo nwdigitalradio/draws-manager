@@ -5,20 +5,10 @@
 	<h2>CODEC Settings</h2>
 </top>
 <left id="leftMain">
-	<h3>Left Mini DIN-6 <img src="/images/mini-din-6-socket.svg" /></h3>
-	<div class="control">Input from RX:<br/> 
-	Source {{>audiorx selectid='left-audiorx'}} &bull; Analog Gain {{>adcselect selectid='left-adcvol'}}</div>
-	<div class="control">Output to TX:<br/>
-	Digital Gain {{>logain selectid='left-lodigvol'}} &bull;
-	Analog Gain {{>pcmselect selectid='left-pcmvol'}}</div>
+{{>din side="left"}}
 </left>
 <right id="rightMain">
-	<h3>Right Mini DIN-6 <img src="/images/mini-din-6-socket.svg" /></h3>
-	<div class="control">Input from RX:<br/> 
-	Source {{>audiorx selectid='right-audiorx'}} &bull; Analog Gain {{>adcselect selectid='right-adcvol'}}</div>
-	<div class="control">Output to TX:<br/> 
-	Digital Gain {{>logain selectid='right-lodigvol'}} &bull;  
-	Analog Gain {{>pcmselect selectid='right-pcmvol'}}</div>
+{{>din side="right"}}
 </right>
 <common id="commonMain">
 	<h3>Shared Controls</h3>
