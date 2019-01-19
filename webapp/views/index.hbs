@@ -34,6 +34,22 @@
 const socket = io.connect();
 console.log(socket);
 
+function ptmvalue(x){
+//	console.log("PTM Value " + x);
+	switch(x) {
+		case '0' : return 'PTM_P3';
+			break;
+		case '1' : return 'PTM_P2';
+			break;
+		case '2' : return 'PTM_P1';
+			break;
+		default :
+			console.log('bad Powertune Value = ' + x);
+			return 'PTM_P3';
+			break;
+	}
+}
+
 function sset(control) {
 	let val = "";
 	switch(parseInt(control)) {
@@ -42,18 +58,14 @@ function sset(control) {
 			val += "," + document.getElementById("right-pcmvol").value;
 			break;
 		case 2:
-			// this.left.setPowerTune(control.curvalues);
+			val = ptmvalue(document.getElementById("left-ptm").value);
 			break;
 		case 3:
-			// this.right.setPowerTune(control.curvalues);
+			val = ptmvalue(document.getElementById("right-ptm").value);
 			break;
 		case 5:
 			val += document.getElementById("left-lodigvol").value;
 			val += "," + document.getElementById("right-lodigvol").value;
-			break;
-		case 7:
-			// this.left.setDACSwitch(control.curleft);
-			// this.right.setDACSwitch(control.curright);
 			break;
 		case 8:
 			let psv = document.getElementById("playbackcmsw").value;
@@ -73,45 +85,21 @@ function sset(control) {
 			val += document.getElementById("left-adcvol").value;
 			val += "," + document.getElementById("right-adcvol").value;
 			break;
-		case 28:
-			// this.left.setOutputSwitch(control.curvalues);
-			break;
-		case 31:
-			// this.right.setOutputSwitch(control.curvalues);
-			break;
-		case 32:
-			// this.right.setDiscInResistor(control.curvalues);
-			break;
-		case 33:
-			// this.right.setAFinResistor(control.curvalues);
-			break;
-		case 36:
-			// this.right.setNegativeResistor(control.curvalues);
-			break;
-		case 39:
-			// this.left.setDiscInResistor(control.curvalues);
-			break;
-		case 40:
-			// this.left.setAFinResistor(control.curvalues);
-			break;
-		case 43:
-			// this.left.setNegativeResistor(control.curvalues);
-			break;
 		default: 
 			val = "Unknown";
 			break;
 	}
 	
 	let message ={control:control,value:val};
-	socket.emit('sset',message,function(data){console.log(data)});
-	console.log(message);
+	socket.emit('sset',message,function(data){if(data.connected) console.log('Connected')});
+//	console.log(message);
 }
 
 function DACset() {
 	let message = {};
 	let lv = document.getElementById('left-audiorx').value;
 	let rv = document.getElementById('right-audiorx').value;
-	console.log(lv + " " + rv);
+	// console.log(lv + " " + rv);
 	let leftdacswitch = "on";
 	let leftdacplaysw = "on";
 	let rightdacswitch = "on";
@@ -176,15 +164,15 @@ function DACset() {
 	let msgdacswitch = leftdacswitch + "," + rightdacswitch;
 	message = {control:7,value:msgdacswitch};
 	socket.emit('sset',message,function(data){console.log(data)});
-	console.log(message);
+	// console.log(message);
 
 	message = {control:28,value:leftdacplaysw};
 	socket.emit('sset',message,function(data){console.log(data)});
-	console.log(message);
+	// console.log(message);
 
 	message = {control:31,value:rightdacplaysw};
 	socket.emit('sset',message,function(data){console.log(data)});
-	console.log(message);
+	// console.log(message);
 
 }
 
@@ -252,6 +240,8 @@ function toggleByClass(cn) {
 			document.getElementById("right-adcvol").value = rightdin.adcvol;
 			document.getElementById("left-lodigvol").value = leftdin.lodigvol;
 			document.getElementById("right-lodigvol").value = rightdin.lodigvol;
+			document.getElementById("left-ptm").value = leftdin.powertune;
+			document.getElementById("right-ptm").value = rightdin.powertune;
 			document.getElementById("playbackcmsw").value = commonset.playbackcmsw;
 			if (leftdin.dacswitch == "off" || leftdin.dacplaysw == "off") document.getElementById("left-audiorx").value = "off";
 			else {
@@ -264,6 +254,8 @@ function toggleByClass(cn) {
 				if (rightdin.in1res == "1") document.getElementById("right-audiorx").value = "disc";
 				if (rightdin.in2res == "1") document.getElementById("right-audiorx").value = "af";
 			}
+
+
 		}
 //		console.log(data.mixer);
 	});
