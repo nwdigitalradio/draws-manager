@@ -27,10 +27,8 @@ body {
 }
 
 footer {
-	/*
 	 position: absolute;
 	bottom: 0;
-	*/
 }
 	
 footer,header {
@@ -68,13 +66,6 @@ top h2 {
 	padding: 0;
 }
 
-div.control {
-	background: darkred;
-	color: white;
-	padding: .5em 1em .5em 1em;
-/*	float: left; */
-}
-
 #topMain {
 	grid-area: top;
 }
@@ -94,6 +85,23 @@ h3 {
 
 h3 > img {
 	vertical-align: middle;
+}
+
+div.control {
+	background: darkred;
+	color: white;
+	padding: 0.5em 1em 0.5em 1em;
+	display: block;
+}
+
+div.advanced {
+	background: darkred;
+	color: white;
+	padding: 0.5em 1em 0.5em 1em;
+}
+
+.advanced {
+	display: none;
 }
 
 /* Stack the layout on small devices/viewports. */

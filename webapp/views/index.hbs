@@ -10,11 +10,12 @@
 <right id="rightMain">
 {{>din side="right"}}
 </right>
-<common id="commonMain">
+<common id="commonMain" class="advanced">
 	<h3>Shared Controls</h3>
-	<div class="control">Playback Common Mode Voltage {{>playswitch selectid='playbackcmsw'}}</div>
+	<div class="advanced">Playback Common Mode Voltage {{>playswitch selectid='playbackcmsw'}}</div>
 </common>
 </div>
+<button class="adv-button" onclick="toggleByClass('advanced')">Toggle Advanced Controls</button>
 </main>
 <nav id="mainNav"><!-- Add Navigation Here --></nav>
 <footer id="pageFooter">
@@ -191,6 +192,17 @@ function setElement(id,str) {
 	var ele = document.getElementById(id);
 	if (ele) ele.innerHTML = str
 	else console.log("Failed to find ID=" + id);
+}
+
+function toggleByClass(cn) {
+	let x = document.getElementsByClassName(cn);
+	for (let i=0;i < x.length;i++) {
+		if (x[i].style.display == "none" || x[i].style.display == "") {
+			x[i].style.display = "block";
+		} else {
+			x[i].style.display = "none";
+		}
+	}
 }
 
 (function () {
