@@ -32,7 +32,8 @@
 </footer>
 <script>
 const socket = io.connect();
-console.log(socket);
+// console.log(socket);
+let Radios = new Array();
 
 function ptmvalue(x){
 //	console.log("PTM Value " + x);
@@ -193,7 +194,114 @@ function toggleByClass(cn) {
 	}
 }
 
+function ptm2idx(str) {
+	switch(str) {
+		case "PTM_P3":
+			return 0;
+			break;
+		case "PTM_P2":
+			return 1;
+			break;
+		case "PTM_P1":
+			return 2;
+			break;
+	}
+	return 0;
+}
+
+function digvoldb(db) {
+	return parseInt(parseFloat(db) + 6);
+}
+
+function adcvoldb(db) {
+	return parseInt((parseFloat(db) + 12) * 2);
+}
+
+function pcmvoldb(db) {
+	return parseInt((parseFloat(db) + 63.5) * 2);
+}
+
+function radioset(side,index) {
+	const change = new Event('change');
+	// console.log(side + " " + index + " " + Radios[index].radio);
+	if (index == -1) {
+		console.log("No Change");
+		return;
+	}
+	if (index == -2) {
+		document.getElementById(side + '-audiorx').value = "off";
+		document.getElementById(side + '-audiorx').dispatchEvent(change);
+		return;
+	}
+	document.getElementById(side + '-audiorx').value = Radios[index].audiorx;
+	document.getElementById(side + '-audiorx').dispatchEvent(change);
+	document.getElementById(side + '-lodigvol').value = digvoldb(Radios[index].lodigvol);
+	document.getElementById(side + '-lodigvol').dispatchEvent(change);
+	document.getElementById(side + '-adcvol').value = adcvoldb(Radios[index].adcvol);
+	document.getElementById(side + '-adcvol').dispatchEvent(change);
+	document.getElementById(side + '-pcmvol').value = pcmvoldb(Radios[index].pcmvol);
+	document.getElementById(side + '-pcmvol').dispatchEvent(change);
+	document.getElementById(side + '-ptm').value = ptm2idx(Radios[index].powertune);
+	document.getElementById(side + '-ptm').dispatchEvent(change);
+}
+
 (function () {
+	socket.on('radios',function(radios) {
+		Radios = radios;
+		let leftradios = document.getElementById('left-radios');
+		let rightradios = document.getElementById('right-radios');
+		while (leftradios.firstChild) leftradios.removeChild(leftradios.firstChild);
+		while (rightradios.firstChild) rightradios.removeChild(rightradios.firstChild);
+
+		// Turn Radio Off
+		var loffradio = document.createElement("option");
+		var loffradtxt = document.createTextNode("Off");
+ 		loffradio.appendChild(loffradtxt);
+		loffradio.value = -2;
+
+		leftradios.appendChild(loffradio);
+
+		var roffradio = document.createElement("option");
+		var roffradtxt = document.createTextNode("Off");
+ 		roffradio.appendChild(roffradtxt);
+		roffradio.value = -2;
+
+		rightradios.appendChild(roffradio);
+
+		// No Change
+		var lnoradio = document.createElement("option");
+		var lnoradtxt = document.createTextNode("None");
+ 		lnoradio.appendChild(lnoradtxt);
+		lnoradio.selected = "selected";
+		lnoradio.value = -1;
+
+		leftradios.appendChild(lnoradio);
+
+		var rnoradio = document.createElement("option");
+		var rnoradtxt = document.createTextNode("None");
+ 		rnoradio.appendChild(rnoradtxt);
+		rnoradio.selected = "selected";
+		rnoradio.value = -1;
+
+		rightradios.appendChild(rnoradio);
+
+		// add radios
+		for (let n=0;n < Radios.length;n++ ) {
+			var leftNode = document.createElement("option");
+			leftNode.value = n;
+			var leftName = document.createTextNode(Radios[n].radio);
+			leftNode.appendChild(leftName);
+			leftradios.appendChild(leftNode);
+
+			var rightNode = document.createElement("option");
+			rightNode.value = n;
+			var rightName = document.createTextNode(Radios[n].radio);
+			rightNode.appendChild(rightName);
+			rightradios.appendChild(rightNode);
+		}
+	//	console.log(JSON.stringify(Radios));
+	});
+
 	socket.on('systemstats', function(data) {
 		socket.send('sset','test');
 		if (data.sensors) {
