@@ -6,8 +6,8 @@ body {
 	"nav main"
 	"footer footer";
 	grid-template-rows: auto 1fr auto;  
-	grid-template-columns: auto 1fr;
-	height: 95vh;
+	grid-template-columns: 15% 1fr;
+	height: 100vh; 
 	margin: 0;
 }  
 #pageHeader {
@@ -18,16 +18,23 @@ body {
 }
 #mainArticle { 
 	grid-area: main;      
+	border-right: black solid 5px;
+	border-left: black solid 5px;
 }
 #mainNav { 
 	grid-area: nav; 
-	background: blue;
-	color: white;
 	text-align: center;
+	border-right: black solid 5px;
+	border-left: black solid 5px;
+}
+#mainNav button {
+	width: 100%;
+	font-weight: bold;
+	padding: 0.5em 1em 0.5em 1em;
 }
 
 footer {
-	 position: absolute;
+	position: relative;
 	bottom: 0;
 }
 	
@@ -46,18 +53,18 @@ footer,header {
 		"left right"
 		"common common";
 	grid-template-columns: 1fr 1fr;
-	/* grid-column-gap: 5;
-	grid-row-gap: 5; */
+	grid-column-gap: 5px;
+	/* grid-row-gap: 5; */
 }
 
 left, right, common {
-	border: black 1px solid;
+/*	border: black 1px solid; */
 }
 
 top {
 	background: white;
 	color: black;
-	padding: 0.251em;
+/*	padding: 0.251em; */
 }
 
 top h2 {
@@ -78,12 +85,16 @@ top h2 {
 #commonMain {
 	grid-area: common;
 }
-h3 {
+.sectionhead {
 	text-align: center;
+       	font-weight: bold;
 	vertical-align: middle;
+	padding:0 0.125em 0 0.125em;
 }
 
-h3 > img {
+.sectionhead img {
+	padding-top: 2px;
+	padding-bottom: 2px;
 	vertical-align: middle;
 }
 

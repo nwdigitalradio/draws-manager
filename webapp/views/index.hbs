@@ -2,7 +2,6 @@
 <main id="mainArticle">
 <div id="inner-grid">
 <top id="topMain">
-	<h2>CODEC Settings</h2>
 </top>
 <left id="leftMain">
 {{>din side="left"}}
@@ -11,13 +10,17 @@
 {{>din side="right"}}
 </right>
 <common id="commonMain" class="advanced">
-	<h3>Shared Controls</h3>
+	<div class="sectionhead">Shared Controls</div>
 	<div class="advanced">Playback Common Mode Voltage {{>playswitch selectid='playbackcmsw'}}</div>
 </common>
 </div>
-<button class="adv-button" onclick="toggleByClass('advanced')">Toggle Advanced Controls</button>
 </main>
-<nav id="mainNav"><!-- Add Navigation Here --></nav>
+<nav id="mainNav">
+	<button class="adv-button" onclick="toggleByClass('advanced')">Toggle Advanced Controls</button>
+	<button onclick="execute(1)">GPSD Restart</button>
+	<button onclick="execute(2)">GPSD Stop</button>
+	<button onclick="execute(3)">Clock Instant Update</button>
+</nav>
 <footer id="pageFooter">
 	<div>
 	<span id="product">{{stats.hat.product}}</span> | 
@@ -94,6 +97,10 @@ function sset(control) {
 	let message ={control:control,value:val};
 	socket.emit('sset',message,function(data){if(data.connected) console.log('Connected')});
 //	console.log(message);
+}
+
+function execute(arg) {
+	socket.emit('execute',{value:arg});
 }
 
 function DACset() {

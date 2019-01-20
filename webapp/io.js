@@ -153,6 +153,27 @@ io.on('connection', function(socket) {
 		console.log(command);
 		exec(command);
 	});
+	socket.on('execute', function(data) {
+		let cmd = "";
+		switch(data.value) {
+			case 1:
+				cmd = "sudo systemctl restart gpsd";
+				break;
+			case 2:
+				cmd = "sudo systemctl stop gpsd";
+				break;
+			case 3:
+				cmd = "sudo chronyc makestep";
+				break;
+			default:
+				cmd = "echo execute " + JSON.stringify(data);
+				break;
+		}
+		console.log('Eexecuting: ' + cmd);
+		console.log(exec(cmd).toString());
+		console.log('done');
+	});
+
 	sysstats(socket);
 	console.log(JSON.stringify(systemstats.mixer,null,4));
 	io.emit("radios",radios);
