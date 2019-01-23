@@ -2,8 +2,8 @@
 <div class="control">Input from Receiver:<br/>
 Source {{>audiorx selectid=(append side "-audiorx")}} &bull; Analog Gain {{>adcselect selectid=(append side "-adcvol")}}</div>
 <div class="control">Output to Transmitter:<br/>
-Digital Gain {{>logain selectid=(append side "-lodigvol")}} &bull;
-Analog Gain {{>pcmselect selectid=(append side "-pcmvol")}}</div> 
+Analog Gain {{>logain selectid=(append side "-lodigvol")}} &bull;
+Digital Gain {{>pcmselect selectid=(append side "-pcmvol")}}</div> 
 <div class="control">Radio Preset Select: <select id="{{side}}-radios" onchange="radioset('{{side}}',this.value)"><option selected>no selection</option></select></div>
 <div class="advanced">DAC Playback PowerTune Level {{>ptm selectid=(append side "-ptm")}}</div>
 
