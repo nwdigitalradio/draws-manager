@@ -111,9 +111,19 @@ div.advanced {
 	padding: 0.5em 1em 0.5em 1em;
 }
 
-.advanced {
+.advanced,.calc {
 	display: none;
 }
+
+.calc {
+	padding: 1em;
+	border-bottom: solid black 5px;
+}
+
+#calc-mv {
+	text-align: right;
+	width: 5em;
+
 
 /* Stack the layout on small devices/viewports. */
 @media all and (max-width: 575px) {

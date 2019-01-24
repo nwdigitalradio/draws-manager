@@ -172,7 +172,7 @@ io.on('connection', function(socket) {
 				cmd = "echo execute " + JSON.stringify(data);
 				break;
 		}
-		console.log('Eexecuting: ' + cmd);
+		console.log('Executing: ' + cmd);
 		console.log(exec(cmd).toString());
 		console.log('done');
 	});

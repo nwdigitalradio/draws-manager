@@ -2,12 +2,7 @@
 <main id="mainArticle">
 <div id="inner-grid">
 <top id="topMain">
-<!--
-<input type="text" id="calc-mv" onchange="calcTX(this.value)"></input>
-<span id="calc-totdb"></span>
-<span id="calc-digout"></span>
-<span id="calc-aout"></span>
--->
+{{>calctx}}
 </top>
 <left id="leftMain">
 {{>din side="left"}}
@@ -23,6 +18,7 @@
 </main>
 <nav id="mainNav">
 	<button class="adv-button" onclick="toggleByClass('advanced')">Toggle Advanced Controls</button>
+	<button class="adv-button" onclick="toggleByClass('calc')">Toggle TX Calculator</button>
 	<button onclick="execute(4)">Persist Audio Settings</button>
 	<button onclick="execute(1)">GPSD Restart</button>
 	<button onclick="execute(2)">GPSD Stop</button>
@@ -40,4 +36,5 @@
 	Load AVG: <span id="loadavg">(Collecting)</span>
 	</div>
 </footer>
+</div>
 <script type="text/javascript" charset="UTF-8" src="/javascripts/draws.js"></script>

@@ -14,9 +14,11 @@ function calcTX(ptpmv) {
         if ((rawdb - db1) > 0.25) diff = 0.5;
         if (-0.25 > (rawdb - db1)) diff = -0.5;
         let db2 = db1 + diff;
-        let digout = db1 > -6.0 ? db1 : -6.0; // LO
-        let aout = db1 < -6.0 ? db2 + 6.0 : 0.0; //PCM
-
+        let aout = db1 > -6.0 ? db1 : -6.0; // LO
+        let digout = db1 < -6.0 ? db2 + 6.0 : 0.0; //PCM
+	document.getElementById('calc-aout').innerHTML = "Analog Gain (LO) = " + aout + " db";
+	document.getElementById('calc-digout').innerHTML = "Digital Gain (PCM) = " + digout + " db";
+	document.getElementById('calc-totdb').innerHTML = "Total Gain = " + db1 + " db (" + rawdb + ")";
 }
 
 
