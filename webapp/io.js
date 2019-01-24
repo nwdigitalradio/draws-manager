@@ -165,6 +165,9 @@ io.on('connection', function(socket) {
 			case 3:
 				cmd = "sudo chronyc makestep";
 				break;
+			case 4:
+				cmd = "sudo alsactl store";
+				break;
 			default:
 				cmd = "echo execute " + JSON.stringify(data);
 				break;
