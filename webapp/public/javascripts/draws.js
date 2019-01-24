@@ -2,6 +2,24 @@ const socket = io.connect();
 // console.log(socket);
 let Radios = new Array();
 
+function calcTX(ptpmv) {
+	let ref = 500; // 3204 0db reference
+        let pv = ptpmv / 2.0; // PTP MV divide by 2
+        let rms = pv / Math.sqrt(2.0);
+
+        let rawdb = 20 * Math.log10(rms/ref);
+
+        let db1 = parseFloat(Math.round(rawdb));
+        let diff =  0;
+        if ((rawdb - db1) > 0.25) diff = 0.5;
+        if (-0.25 > (rawdb - db1)) diff = -0.5;
+        let db2 = db1 + diff;
+        let digout = db1 > -6.0 ? db1 : -6.0; // LO
+        let aout = db1 < -6.0 ? db2 + 6.0 : 0.0; //PCM
+
+}
+
+
 function ptmvalue(x){
 //	console.log("PTM Value " + x);
 	switch(x) {
