@@ -5,7 +5,7 @@ After=network.target
 
 [Service]
 WorkingDirectory=/usr/local/var/draws-manager/webapp
-Environment=PORT=80
+EnvironmentFile=/etc/default/draws-manager
 Type=simple
 User=root
 ExecStart=/usr/bin/npm start
