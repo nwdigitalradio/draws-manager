@@ -7,7 +7,7 @@ Early development - NOT FOR DEPLOYMENT YET
 <h4>Prerequisites</h4>
 <b>sudo apt-get install nodejs npm git</b>
 
-<b>sudo npm install -g npm</b>   #updates npm, it will throw a couple of warnings, just ignore.
+<b>sudo npm install -g npm</b>   #this updates npm, it will throw a couple of warnings, just ignore.
 
 <b>cd /usr/local/var</b>
 
@@ -19,7 +19,7 @@ Early development - NOT FOR DEPLOYMENT YET
 
 <b>sudo cp draws-manager /etc/default</b>
 
-# If you want to set the port, edit /etc/default/draws-manager and add a line with the port number, e.g. PORT=80 (it defaults to 8080)
+<p># If you want to set the port, edit /etc/default/draws-manager and add a line with the port number, e.g. PORT=80 (it defaults to 8080)</p>
 
 <b>cd webapp</b>
 
