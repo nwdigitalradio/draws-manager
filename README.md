@@ -1,6 +1,8 @@
 # draws-manager
 Early development - NOT FOR DEPLOYMENT YET
 
+<b>THIS CODE RUNS UNDER ROOT, DO NOT EXPOSE TO THE OPEN INTERNET</b>
+
 <h3>Alpha Code</h3>
 <h4>Prerequisites</h4>
 <b>sudo apt-get install nodejs npm git</b>
