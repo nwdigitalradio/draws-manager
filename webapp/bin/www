@@ -14,23 +14,26 @@ var http = require('http');
  */
 
 var port = normalizePort(process.env.PORT || '8080');
+var address = process.env.ADDR || 'localhost';
 app.set('port', port);
+app.set('address', address);
+console.log(address);
 
 /**
  * Create HTTP server.
  */
 
-var server = http.createServer(app);
+var server = http.createServer(app).listen(port,address);
 io.attach(server);
 io.on('connection', function(socket) {
 	socket.emit('connected', { title: 'DRAWS™ Manager'});
 });
 
 /**
- * Listen on provided port, on all network interfaces.
+ * Listen on provided port, on designated network interfaces.
  */
 
-server.listen(port);
+server.listen(port,address);
 server.on('error', onError);
 server.on('listening', onListening);
 

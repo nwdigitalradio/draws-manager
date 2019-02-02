@@ -6,7 +6,7 @@ const Amixer = require('./amixer.js');
 const MixerState = require('./mixerState');
 let mixer = new Amixer();
 let radios = JSON.parse(fs.readFileSync('./radios.json').toString());
-console.log("Radios: " + JSON.stringify(radios,null,4));
+// console.log("Radios: " + JSON.stringify(radios,null,4));
 
 let thermFile = '/sys/class/thermal/thermal_zone0/temp';
 let systemstatseconds = 20 * 1000;
@@ -178,7 +178,7 @@ io.on('connection', function(socket) {
 	});
 
 	sysstats(socket);
-	console.log(JSON.stringify(systemstats.mixer,null,4));
+	// console.log(JSON.stringify(systemstats.mixer,null,4));
 	io.emit("radios",radios);
 	setInterval(function() {sysstats(socket)},1000);
 
