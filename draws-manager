@@ -1,0 +1,5 @@
+#PORT is port for webserver to listen on
+#PORT=8873
+# ADDR is listeniing address, 0.0.0.0 is all interfaces IPv4 :: adds IPv6
+#ADDR=127.0.0.1
+ADDR=::
