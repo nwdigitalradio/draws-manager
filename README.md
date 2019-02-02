@@ -17,11 +17,14 @@ Early development - NOT FOR DEPLOYMENT YET
 
 <b>sudo cp draws-manager.service /lib/systemd/system</b>
 
+<b>sudo cp draws-manager /etc/default</b>
+
+# If you want to set the port, edit /etc/default/draws-manager and add a line with the port number, e.g. PORT=80 (it defaults to 8080)
+
 <b>cd webapp</b>
 
 <b>sudo /usr/bin/npm install</b>  #this will take a while
 
-<b>sudo touch /etc/default/draws-manager</b> # If you want to set the port, edit /etc/default/draws-manager and add a line with the port number, e.g. PORT=80 (it defaults to 8080)
 
 <b>sudo systemctl start draws-manager</b>
 
