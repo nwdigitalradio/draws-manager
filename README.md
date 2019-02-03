@@ -11,7 +11,7 @@ Early development - NOT FOR DEPLOYMENT YET
 
 <b>cd /usr/local/var</b>
 
-<b>git clone https://github.com/nwdigitalradio/draws-manager.git</b>
+<b>sudo git clone https://github.com/nwdigitalradio/draws-manager.git</b>
 
 <b>cd draws-manager</b>
 
