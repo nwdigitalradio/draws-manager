@@ -22,6 +22,14 @@ function calcTX(ptpmv) {
 }
 
 
+function updateControl(control, slidervalue) {
+	const change = new Event('change');
+	let xcontrol = document.getElementById(control);
+//	console.log(slidervalue);
+	xcontrol.value = slidervalue;
+	xcontrol.dispatchEvent(change);
+}
+
 function ptmvalue(x){
 //	console.log("PTM Value " + x);
 	switch(x) {
@@ -335,6 +343,8 @@ function radioset(side,index) {
 			
 			document.getElementById("left-pcmvol").value = leftdin.pcmvol;
 			document.getElementById("right-pcmvol").value = rightdin.pcmvol;
+			document.getElementById("slider-left-pcmvol").value = leftdin.pcmvol;
+			document.getElementById("slider-right-pcmvol").value = rightdin.pcmvol;
 			document.getElementById("left-adcvol").value = leftdin.adcvol;
 			document.getElementById("right-adcvol").value = rightdin.adcvol;
 			document.getElementById("left-lodigvol").value = leftdin.lodigvol;
