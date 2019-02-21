@@ -1,4 +1,8 @@
 <!-- 1	'PCM Playback Volume'-->
+<slider>
+<input type="range" min="0" max="175" id="slider-{{selectid}}" onchange="updateControl('{{selectid}}',this.value)"></input>
+</slider>
+<pulldown>
 <select id="{{selectid}}" name="{{selectid}}" onchange="sset(1)">
 <!-- -63.50 0.50-->
 	<option value="0">-63.50</option>
@@ -179,6 +183,4 @@
 	<option value="175">24.00</option>
 </select>
 <label for="{{selectid}}">db</label>
-<div class="onehundred">
-<input type="range" min="0" max="175" id="slider-{{selectid}}" onchange="updateControl('{{selectid}}',this.value)"></input>
-</div>
+</pulldown>

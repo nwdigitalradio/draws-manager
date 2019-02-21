@@ -347,8 +347,12 @@ function radioset(side,index) {
 			document.getElementById("slider-right-pcmvol").value = rightdin.pcmvol;
 			document.getElementById("left-adcvol").value = leftdin.adcvol;
 			document.getElementById("right-adcvol").value = rightdin.adcvol;
+			document.getElementById("slider-left-adcvol").value = leftdin.adcvol;
+			document.getElementById("slider-right-adcvol").value = rightdin.adcvol;
 			document.getElementById("left-lodigvol").value = leftdin.lodigvol;
 			document.getElementById("right-lodigvol").value = rightdin.lodigvol;
+			document.getElementById("slider-left-lodigvol").value = leftdin.lodigvol;
+			document.getElementById("slider-right-lodigvol").value = rightdin.lodigvol;
 			document.getElementById("left-ptm").value = leftdin.powertune;
 			document.getElementById("right-ptm").value = rightdin.powertune;
 			document.getElementById("playbackcmsw").value = commonset.playbackcmsw;

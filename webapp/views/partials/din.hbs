@@ -1,9 +1,16 @@
-<div class="sectionhead"><img src="/images/mini-din-6-socket.svg" /> {{capitalize side}} Mini DIN-6</div>
-<div class="control">Input from Receiver:<br/>
-Source {{>audiorx selectid=(append side "-audiorx")}} &bull; Analog Gain {{>adcselect selectid=(append side "-adcvol")}}</div>
-<div class="control">Output to Transmitter:<br/>
-Analog Gain {{>logain selectid=(append side "-lodigvol")}} &bull;
-Digital Gain {{>pcmselect selectid=(append side "-pcmvol")}}</div> 
+<div class="sectionhead" title="Socket View"><img src="/images/mini-din-6-socket.svg" /> {{capitalize side}} Mini DIN-6</div>
+<div class="control">Input from Receiver
+	<div class="scontrol">
+		<lab>Signal Source</lab><slider></slider><pulldown>{{>audiorx selectid=(append side "-audiorx")}}</pulldown>
+		<lab>Analog Gain</lab>{{>adcselect selectid=(append side "-adcvol")}}
+	</div>
+</div>
+<div class="control">Output to Transmitter
+	<div class="scontrol">
+		<lab>Analog Gain</lab>{{>logain selectid=(append side "-lodigvol")}}
+		<lab>Digital Gain</lab>{{>pcmselect selectid=(append side "-pcmvol")}}
+	</div>
+</div>
 <div class="control">Radio Preset Select: <select id="{{side}}-radios" onchange="radioset('{{side}}',this.value)"><option selected>no selection</option></select></div>
 <div class="advanced">DAC Playback PowerTune Level {{>ptm selectid=(append side "-ptm")}}</div>
 

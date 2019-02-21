@@ -73,6 +73,17 @@ top h2 {
 	padding: 0;
 }
 
+.scontrol {
+	display: grid;
+	grid-template-areas:
+		"lab slider pulldown";
+	grid-template-columns: 20% 3fr 4fr;
+}
+
+slider {
+	width: 90%;
+}
+
 #topMain {
 	grid-area: top;
 }
