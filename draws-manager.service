@@ -11,7 +11,7 @@ User=root
 ExecStart=/usr/bin/npm start
 StandardOutput=syslog
 StandardError=syslog
-Restart=on-failure
+Restart=on-success
 
 [Install]
 WantedBy=multi-user.target
