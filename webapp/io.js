@@ -168,6 +168,8 @@ io.on('connection', function(socket) {
 			case 4:
 				cmd = "sudo alsactl store";
 				break;
+			case 5: cmd = "cd /usr/local/var/draws-manager && git pull && systemctl restart draws-manager";
+				break;
 			default:
 				cmd = "echo execute " + JSON.stringify(data);
 				break;
