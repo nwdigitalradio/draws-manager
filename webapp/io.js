@@ -179,9 +179,11 @@ io.on('connection', function(socket) {
 				break;
 		}
 		console.log('Executing: ' + cmd);
-
+		io.emit("execresult",cmd);
 		aexec(cmd, function(error, stdout, stderr) {
-			io.emit("execresult",cmd);
+			if (error !== null) {
+				io.emit("execresult","Error: " + error + " " + cmd);
+			}
 		});
 	
 		console.log('done');
