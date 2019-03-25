@@ -1,7 +1,11 @@
 var io = require('socket.io')();
 var express = require('express');
 var fs = require('fs');
-const exec = require('child_process').execSync;
+const childproc = require('child_process');
+//const exec = require('child_process').execSync;
+const exec = childproc.execSync;
+const aexec = childproc.exec;
+//const aexec = require('child_process').exec;
 const Amixer = require('./amixer.js');
 const MixerState = require('./mixerState');
 let mixer = new Amixer();
@@ -175,7 +179,11 @@ io.on('connection', function(socket) {
 				break;
 		}
 		console.log('Executing: ' + cmd);
-		console.log(exec(cmd).toString());
+
+		aexec(cmd, function(error, stdout, stderr) {
+			io.emit("execresult",cmd);
+		});
+	
 		console.log('done');
 	});
 

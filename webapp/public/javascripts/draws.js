@@ -301,6 +301,11 @@ function radioset(side,index) {
 	//	console.log(JSON.stringify(Radios));
 	});
 
+	socket.on("execresult", function(data) {
+		console.log(data);
+		alert(data);
+	});
+
 	socket.on('systemstats', function(data) {
 		socket.send('sset','test');
 		if (data.sensors) {
@@ -373,3 +378,4 @@ function radioset(side,index) {
 //		console.log(data.mixer);
 	});
 })();
+
