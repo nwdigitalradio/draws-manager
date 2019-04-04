@@ -2,20 +2,17 @@
 <main id="mainArticle">
 	<div id="inner-grid">
 		<top id="topMain">
-			{{>calctx}}
+			{{>apolicy}}
 		</top>
 		<left id="leftMain">
-			{{>din side="left"}}
 		</left>
 		<right id="rightMain">
-			{{>din side="right"}}
 		</right>
-		<common id="commonMain" class="advanced">
-			<div class="sectionhead">Shared Controls</div>
-			<div class="advanced">Playback Common Mode Voltage {{>playswitch selectid='playbackcmsw'}}</div>
+		<common id="commonMain">
+			{{>apps}}
 		</common>
 	</div>
 </main>
-{{>mainnav}}
+{{>appsnav}}
 {{>footer}}
 <script type="text/javascript" charset="UTF-8" src="/javascripts/draws.js"></script>
