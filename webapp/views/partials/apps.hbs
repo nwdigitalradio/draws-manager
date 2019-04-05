@@ -1,6 +1,6 @@
-
 <div class="help-grid">
-	<span>Application</span><span>Support Group or Contact</span><span>Additional Resources</span>
-	<span>fldigi family of programs</span><span><a href="https://groups.io/g/linuxham">Linuxhams on Groups.io</a></span><span><a href="http://www.w1hkj.com">www.w1hkj.com</a></span>
-	<span>direwolf</span><span><a href="https://groups.yahoo.com/neo/groups/direwolf_packet/info">Direwolf Packet on Yahoo!</a></span><span><a href="://github.com/wb2osz/direwolf">Direwolf on Github</a></span>
+<span><b>Application</b></span><span><b>Contact Support</b></span><span><b>Additional Information</b></span>
+{{#each drawsapps}}
+	<span>{{this.Application}}</span><span><a href="{{this.Support}}" target="support-new">{{this.SupportLinkText}}</a></span><span><a href="{{this.Other}}" target="other-new">{{this.OtherLinkText}}</a></span>
+{{/each}}
 </div>

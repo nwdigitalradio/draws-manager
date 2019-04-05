@@ -1,0 +1,74 @@
+[
+   {
+      "Application" : "fldigi, flrig and associated applications",
+      "Comment" : "",
+      "Support" : "https://groups.io/g/linuxham",
+      "OtherLinkText" : "W1HKJ Site",
+      "Other" : "http://www.w1hkj.com/",
+      "SupportLinkText" : "linuxham on Groups.io"
+   },
+   {
+      "Support" : "https://groups.yahoo.com/neo/groups/direwolf_packet/info",
+      "SupportLinkText" : "direwolf packet on Yahoo!",
+      "Other" : "https://github.com/wb2osz/direwolf",
+      "OtherLinkText" : "Source Code and Report Issues",
+      "Application" : "direwolf packet",
+      "Comment" : ""
+   },
+   {
+      "Application" : "js8call",
+      "Comment" : "",
+      "Support" : "https://groups.io/g/js8call",
+      "Other" : "http://js8call.com/",
+      "SupportLinkText" : "js8call on Groups.io",
+      "OtherLinkText" : "JS8CALL Website"
+   },
+   {
+      "Comment" : "",
+      "Application" : "wsjtx",
+      "Other" : "http://physics.princeton.edu/pulsar/k1jt/wsjtx.html",
+      "SupportLinkText" : "wsjt-x on Groups.io",
+      "OtherLinkText" : "WSJT-X Home Page",
+      "Support" : "https://groups.io/g/WSJTX"
+   },
+   {
+      "Application" : "N7NIX Scripts and AX.25",
+      "Comment" : "",
+      "Support" : "mailto:basil@pacabunga.com?subject=DRAWS™%20Support",
+      "OtherLinkText" : "Source Code and Report Issues",
+      "SupportLinkText" : "Email N7NIX",
+      "Other" : "https://github.com/nwdigitalradio/n7nix"
+   },
+   {
+      "Support" : "https://github.com/nwdigitalradio/paclink-unix/issues",
+      "SupportLinkText" : "Submit Issues",
+      "Other" : "https://github.com/nwdigitalradio/paclink-unix",
+      "OtherLinkText" : "Source Code and Report Issues",
+      "Application" : "Paclink-Unix",
+      "Comment" : ""
+   },
+   {
+      "Comment" : "",
+      "Application" : "DRAWS™ Manager",
+      "Support" : "https://nw-digital-radio.groups.io/g/udrc",
+      "OtherLinkText" : "Source Code and Report Issues",
+      "Other" : "https://github.com/nwdigitalradio/draws-manager",
+      "SupportLinkText" : "DRAWS™ Support"
+   },
+   {
+      "Other" : "http://www.ka2ddo.org/ka2ddo/YAAC.html",
+      "SupportLinkText" : "YAAC Testers on Yahoo!",
+      "OtherLinkText" : "Project Page",
+      "Support" : "https://groups.yahoo.com/neo/groups/yaac-alpha-testers/info",
+      "Application" : "YAAC",
+      "Comment" : ""
+   },
+   {
+      "Application" : "XASTIR",
+      "Comment" : "",
+      "OtherLinkText" : "Source Code and Report Issues",
+      "SupportLinkText" : "Xastir Mailing List",
+      "Other" : "https://github.com/Xastir/Xastir",
+      "Support" : "http://xastir.org/mailman/listinfo/"
+   }
+]

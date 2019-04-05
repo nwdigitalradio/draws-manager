@@ -10,6 +10,7 @@ const Amixer = require('./amixer.js');
 const MixerState = require('./mixerState');
 let mixer = new Amixer();
 let radios = JSON.parse(fs.readFileSync('./radios.json').toString());
+let drawsapps = JSON.parse(fs.readFileSync('./draws-apps.json').toString());
 // console.log("Radios: " + JSON.stringify(radios,null,4));
 
 let thermFile = '/sys/class/thermal/thermal_zone0/temp';
@@ -198,4 +199,5 @@ io.on('connection', function(socket) {
 
 io.controls = new MixerState().limited();
 io.systemstats = getStats();
+io.drawsapps = drawsapps;
 module.exports = io;

@@ -9,8 +9,8 @@ router.get('/', function(req, res, next) {
 
 
 router.get('/application-support', function(req, res, next) {
-//	console.log("-" + JSON.stringify(io.controls,null,4));
-	res.render('app-support', { layout: 'layout', controls: io.controls, title: 'Application Help', stats: io.systemstats});
+//	console.log("-" + JSON.stringify(io.drawsapps,null,4));
+	res.render('app-support', { layout: 'layout', controls: io.controls, title: 'Application Help', stats: io.systemstats, drawsapps: io.drawsapps});
 });
 
 module.exports = router;
