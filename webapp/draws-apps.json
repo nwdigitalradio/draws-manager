@@ -1,74 +1,74 @@
 [
    {
-      "Application" : "fldigi, flrig and associated applications",
+      "Support" : "https://groups.yahoo.com/neo/groups/direwolf_packet/info",
+      "Comment" : "",
+      "OtherLinkText" : "Source Code and Report Issues",
+      "Application" : "Direwolf Packet",
+      "Other" : "https://github.com/wb2osz/direwolf",
+      "SupportLinkText" : "direwolf packet on Yahoo!"
+   },
+   {
+      "SupportLinkText" : "DRAWS™ Support",
+      "Other" : "https://github.com/nwdigitalradio/draws-manager",
+      "Application" : "DRAWS™ Manager",
+      "OtherLinkText" : "Source Code and Report Issues",
+      "Comment" : "",
+      "Support" : "https://nw-digital-radio.groups.io/g/udrc"
+   },
+   {
       "Comment" : "",
       "Support" : "https://groups.io/g/linuxham",
       "OtherLinkText" : "W1HKJ Site",
+      "Application" : "Fldigi Suite",
       "Other" : "http://www.w1hkj.com/",
       "SupportLinkText" : "linuxham on Groups.io"
    },
    {
-      "Support" : "https://groups.yahoo.com/neo/groups/direwolf_packet/info",
-      "SupportLinkText" : "direwolf packet on Yahoo!",
-      "Other" : "https://github.com/wb2osz/direwolf",
-      "OtherLinkText" : "Source Code and Report Issues",
-      "Application" : "direwolf packet",
+      "SupportLinkText" : "js8call on Groups.io",
+      "Other" : "http://js8call.com/",
+      "Application" : "JS8CALL",
+      "OtherLinkText" : "JS8CALL Website",
+      "Support" : "https://groups.io/g/js8call",
       "Comment" : ""
    },
    {
-      "Application" : "js8call",
-      "Comment" : "",
-      "Support" : "https://groups.io/g/js8call",
-      "Other" : "http://js8call.com/",
-      "SupportLinkText" : "js8call on Groups.io",
-      "OtherLinkText" : "JS8CALL Website"
-   },
-   {
-      "Comment" : "",
-      "Application" : "wsjtx",
-      "Other" : "http://physics.princeton.edu/pulsar/k1jt/wsjtx.html",
-      "SupportLinkText" : "wsjt-x on Groups.io",
-      "OtherLinkText" : "WSJT-X Home Page",
-      "Support" : "https://groups.io/g/WSJTX"
-   },
-   {
-      "Application" : "N7NIX Scripts and AX.25",
-      "Comment" : "",
       "Support" : "mailto:basil@pacabunga.com?subject=DRAWS™%20Support",
+      "Comment" : "",
       "OtherLinkText" : "Source Code and Report Issues",
+      "Application" : "N7NIX Scripts and AX.25",
       "SupportLinkText" : "Email N7NIX",
       "Other" : "https://github.com/nwdigitalradio/n7nix"
    },
    {
+      "Comment" : "",
       "Support" : "https://github.com/nwdigitalradio/paclink-unix/issues",
-      "SupportLinkText" : "Submit Issues",
-      "Other" : "https://github.com/nwdigitalradio/paclink-unix",
       "OtherLinkText" : "Source Code and Report Issues",
       "Application" : "Paclink-Unix",
-      "Comment" : ""
+      "Other" : "https://github.com/nwdigitalradio/paclink-unix",
+      "SupportLinkText" : "Submit Issues"
    },
    {
       "Comment" : "",
-      "Application" : "DRAWS™ Manager",
-      "Support" : "https://nw-digital-radio.groups.io/g/udrc",
-      "OtherLinkText" : "Source Code and Report Issues",
-      "Other" : "https://github.com/nwdigitalradio/draws-manager",
-      "SupportLinkText" : "DRAWS™ Support"
+      "Support" : "https://groups.io/g/WSJTX",
+      "OtherLinkText" : "WSJT-X Home Page",
+      "Application" : "WSJTX",
+      "SupportLinkText" : "wsjt-x on Groups.io",
+      "Other" : "http://physics.princeton.edu/pulsar/k1jt/wsjtx.html"
+   },
+   {
+      "Application" : "XASTIR",
+      "SupportLinkText" : "Xastir Mailing List",
+      "Other" : "https://github.com/Xastir/Xastir",
+      "Comment" : "",
+      "Support" : "http://xastir.org/mailman/listinfo/",
+      "OtherLinkText" : "Source Code and Report Issues"
    },
    {
       "Other" : "http://www.ka2ddo.org/ka2ddo/YAAC.html",
       "SupportLinkText" : "YAAC Testers on Yahoo!",
-      "OtherLinkText" : "Project Page",
-      "Support" : "https://groups.yahoo.com/neo/groups/yaac-alpha-testers/info",
       "Application" : "YAAC",
-      "Comment" : ""
-   },
-   {
-      "Application" : "XASTIR",
+      "OtherLinkText" : "Project Page",
       "Comment" : "",
-      "OtherLinkText" : "Source Code and Report Issues",
-      "SupportLinkText" : "Xastir Mailing List",
-      "Other" : "https://github.com/Xastir/Xastir",
-      "Support" : "http://xastir.org/mailman/listinfo/"
+      "Support" : "https://groups.yahoo.com/neo/groups/yaac-alpha-testers/info"
    }
 ]
