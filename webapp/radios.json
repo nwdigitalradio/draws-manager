@@ -30,9 +30,21 @@
         "powertune":"PTM_P3",
         "pcmvol":"-5.0db",
         "lodigvol":"-6.00db",
-        "adcvol":"10.00db",
+        "adcvol":"0.00db",
         "dacswitch":"on",
         "dacplaysw":"on",
         "comments":""
+    },
+    {
+        "radio":"Elecraft KX-2",
+        "audiorx":"af",
+        "negresistor":"10 kOhm",
+        "powertune":"PTM_P3",
+        "pcmvol":"-8.00db",
+        "lodigvol":"-6.00db",
+        "adcvol":"7.50db",
+        "dacswitch":"on",
+        "dacplaysw":"on",
+        "comments":"Set Mic Gain 2 per VE3MM"
     }
 ]

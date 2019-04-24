@@ -2,6 +2,7 @@
 Description=DRAWS™ Manager - A web application to manage the DRAW™ HAT configuration.
 Documentation=https://github.com/nwdigitalradio/draws-manager
 After=network.target
+ConditionPathExists=/proc/asound/udrc
 
 [Service]
 WorkingDirectory=/usr/local/var/draws-manager/webapp
