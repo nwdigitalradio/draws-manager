@@ -5,7 +5,7 @@ Early development - NOT FOR DEPLOYMENT YET
 
 <h3>Alpha Code</h3>
 <h4>Prerequisites</h4>
-<b>sudo apt-get install nodejs npm git</b>
+<b>sudo apt-get install nodejs npm git lm-sensors</b>
 
 <b>sudo npm install -g npm</b>   #this updates npm, it will throw a couple of warnings, just ignore.
 
