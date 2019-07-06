@@ -42,7 +42,7 @@ function trimNull(a) {
 }
 
 function getSensors() {
-	let senbuf = exec('/usr/bin/sensors');
+	let senbuf = exec('/usr/bin/sensors *-i2c-1-48');
 	let lines = senbuf.toString().split(/\r?\n/);
 	let sensors = [];
 	for (let i=0; i < lines.length; i++) {
