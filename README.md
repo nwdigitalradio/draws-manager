@@ -9,7 +9,7 @@ Early development - NOT FOR DEPLOYMENT YET
 
 <b>sudo npm install -g npm</b>   #this updates npm, it will throw a couple of warnings, just ignore.
 
-<b>Get a recent version of <a href="https://www.instructables.com/id/Install-Nodejs-and-Npm-on-Raspberry-Pi/" target="new">node.js and npm</a><b>
+<b>Get a recent version of <a href="https://github.com/nodesource/distributions/blob/master/README.md#debinstall" target="new">node.js and npm</a> uding Debian instructions.<b>
 
 <b>cd /usr/local/var</b>
 
