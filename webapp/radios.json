@@ -46,5 +46,17 @@
         "dacswitch":"on",
         "dacplaysw":"on",
         "comments":"Set Mic Gain 2 per VE3MM"
+    },
+    {
+        "radio":"FT-857D FM AX25",
+        "audiorx":"af",
+        "negresistor":"10 kOhm",
+        "powertune":"PTM_P3",
+        "pcmvol":"15.00db",
+        "lodigvol":"0.00db",
+        "adcvol":"0.0db",
+        "dacswitch":"on",
+        "dacplaysw":"on",
+        "comments":""
     }
 ]
