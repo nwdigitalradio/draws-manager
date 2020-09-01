@@ -42,7 +42,7 @@ function trimNull(a) {
 }
 
 function getSensors() {
-	let senbuf = exec('/usr/bin/sensors *-i2c-1-48');
+	let senbuf = exec('/usr/bin/sensors iio_hwmon-isa-0000');
 	let lines = senbuf.toString().split(/\r?\n/);
 	let sensors = [];
 	for (let i=0; i < lines.length; i++) {
@@ -152,7 +152,7 @@ setInterval(function () {
 
 io.on('connection', function(socket) {
 //	socket.emit({"mixerstate":new MixerState()});
-	socket.on('sset', function(data) { 
+	socket.on('sset', function(data) {
 		let command = "/usr/bin/amixer -c udrc sset '" + controlnames[data.control] + "' '"
 			+ data.value + "'";
 		console.log(command);
@@ -186,7 +186,7 @@ io.on('connection', function(socket) {
 				io.emit("execresult","Error: " + error + " " + cmd);
 			}
 		});
-	
+
 		console.log('done');
 	});
 
