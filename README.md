@@ -15,8 +15,9 @@ Get a recent version of [node.js and npm](https://github.com/nodesource/distribu
     cd /usr/local/var
     sudo git clone https://github.com/nwdigitalradio/draws-manager.git
     cd draws-manager
-    sudo cp draws-manager.service /lib/systemd/system
+    sudo cp draws-manager.service /etc/systemd/system
     sudo cp draws-manager /etc/default
+    sudo systemctl daemon-reload
 
 If you want to set the port, edit `/etc/default/draws-manager` and add a line with the port number, e.g. `PORT=80` (it defaults to 8080).
 
@@ -25,4 +26,3 @@ If you want to set the port, edit `/etc/default/draws-manager` and add a line wi
     sudo systemctl start draws-manager
 
 Open a browser and point it at the IP-address:port
-
