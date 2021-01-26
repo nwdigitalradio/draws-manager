@@ -33,15 +33,15 @@ function updateControl(control, slidervalue) {
 function ptmvalue(x){
 //	console.log("PTM Value " + x);
 	switch(x) {
-		case '0' : return 'PTM_P3';
+		case '0' : return 'P3';
 			break;
-		case '1' : return 'PTM_P2';
+		case '1' : return 'P2';
 			break;
-		case '2' : return 'PTM_P1';
+		case '2' : return 'P1';
 			break;
 		default :
 			console.log('bad Powertune Value = ' + x);
-			return 'PTM_P3';
+			return 'P3';
 			break;
 	}
 }
@@ -195,13 +195,13 @@ function toggleByClass(cn) {
 
 function ptm2idx(str) {
 	switch(str) {
-		case "PTM_P3":
+		case "P3":
 			return 0;
 			break;
-		case "PTM_P2":
+		case "P2":
 			return 1;
 			break;
-		case "PTM_P1":
+		case "P1":
 			return 2;
 			break;
 	}
